@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="layout: default 　　title: 如何获取table下指定列的值及所在行每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。 html： &amp;lt;table class=&amp;quot;datatbl&amp;quot;&amp;gt;     &amp;lt;thead&amp;gt;">
+<meta name="description" content="每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。 html： &amp;lt;table class=&amp;quot;datatbl&amp;quot;&amp;gt;     &amp;lt;thead&amp;gt;         &amp;lt;tr&amp;gt;             &amp;lt;td&amp;gt;xxx&amp;lt;/td&amp;gt;">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="获取指定行所在的列">
 <meta property="og:url" content="http://yoursite.com/2018/10/10/获取指定行所在的列/index.html">
 <meta property="og:site_name" content="一只小喵喵的博客">
-<meta property="og:description" content="layout: default 　　title: 如何获取table下指定列的值及所在行每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。 html： &amp;lt;table class=&amp;quot;datatbl&amp;quot;&amp;gt;     &amp;lt;thead&amp;gt;">
+<meta property="og:description" content="每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。 html： &amp;lt;table class=&amp;quot;datatbl&amp;quot;&amp;gt;     &amp;lt;thead&amp;gt;         &amp;lt;tr&amp;gt;             &amp;lt;td&amp;gt;xxx&amp;lt;/td&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-10T08:20:19.671Z">
+<meta property="og:updated_time" content="2018-10-10T08:39:10.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="获取指定行所在的列">
-<meta name="twitter:description" content="layout: default 　　title: 如何获取table下指定列的值及所在行每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。 html： &amp;lt;table class=&amp;quot;datatbl&amp;quot;&amp;gt;     &amp;lt;thead&amp;gt;">
+<meta name="twitter:description" content="每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。 html： &amp;lt;table class=&amp;quot;datatbl&amp;quot;&amp;gt;     &amp;lt;thead&amp;gt;         &amp;lt;tr&amp;gt;             &amp;lt;td&amp;gt;xxx&amp;lt;/td&amp;gt;">
 
 
 
@@ -316,7 +316,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  372 字
+                  354 字
                 </span>
               
 
@@ -353,9 +353,7 @@
       
 
       
-        <hr>
-<p>　　layout: default</p>
-<h2 id="title-如何获取table下指定列的值及所在行"><a href="#title-如何获取table下指定列的值及所在行" class="headerlink" title="　　title: 如何获取table下指定列的值及所在行"></a>　　title: 如何获取table下指定列的值及所在行</h2><p>每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。</p>
+        <p>每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。</p>
 <p>html：</p>
 <pre><code>&lt;table class=&quot;datatbl&quot;&gt;
     &lt;thead&gt;
@@ -482,17 +480,8 @@ $(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的�
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -566,22 +555,6 @@ $(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的�
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-如何获取table下指定列的值及所在行"><span class="nav-number">1.</span> <span class="nav-text">　　title: 如何获取table下指定列的值及所在行</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
