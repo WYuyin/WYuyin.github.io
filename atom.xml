@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-10T08:39:10.305Z</updated>
+  <updated>2018-10-12T08:33:43.532Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring boot入门</title>
+    <link href="http://yoursite.com/2018/10/12/spring-boot%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2018/10/12/spring-boot入门/</id>
+    <published>2018-10-12T02:22:06.000Z</published>
+    <updated>2018-10-12T08:33:43.532Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>虽然工作用不到springboot，甚至没有用到spring，但这也就是为什么我有了强烈的危机感，现在许多地方应该会用到吧，或许标题应该是从零开始学springboot。跟着尚硅谷的springboot视频学习，如有侵权请留言或发<a href="9005837@qq.com">邮箱</a>告诉我</p></blockquote><p>spring boot是用于简化spring开发的框架，是基于spring再封装的一个框架<br>优点：</p><ul><li>快速创建独立运行的Spring项目以及与主流框架集成</li><li>使用嵌入式的Servlet容器，应用无需打成WAR包</li><li>starters自动依赖与版本控制</li><li>大量的自动配置，简化开发，也可修改默认值</li><li>无需配置XML，无代码生成，开箱即用</li><li>准生产环境的运行时应用监控</li><li>与云计算的天然集成<br>这里的无需配置配置文件，和starters自动依赖真的是很吸引人，想想用spring的时候从各种配置开始学真的有些繁琐。</li></ul><h2 id="环境约束"><a href="#环境约束" class="headerlink" title="环境约束"></a>环境约束</h2><ul><li>jdk1.8</li><li>maven3.x</li><li>IDEA2018</li><li>SpringBoot1.5.9</li></ul><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.在apache-maven-3.3.9\conf\settings.xml中检查：</p><pre><code>&lt;profiles&gt;  &lt;profile&gt;            &lt;id&gt;jdk18&lt;/id&gt;            &lt;activation&gt;                &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;                &lt;jdk&gt;1.8&lt;/jdk&gt;            &lt;/activation&gt;            &lt;properties&gt;                &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;                &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;                &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;            &lt;/properties&gt;         &lt;/profile&gt;  </code></pre><p>2.将IDEA的Maven环境修改为当前1.8版本，IDEA自带Maven<br><img src="/2018/10/12/spring-boot入门/20181012145508.png"></p><h2 id="HelloWorldDemo"><a href="#HelloWorldDemo" class="headerlink" title="HelloWorldDemo"></a>HelloWorldDemo</h2><p>流程：浏览器发送请求，服务器接收后处理并响应HelloWorld</p><h3 id="1-创建一个Maven工程"><a href="#1-创建一个Maven工程" class="headerlink" title="1.创建一个Maven工程"></a>1.创建一个Maven工程</h3><p><img src="/2018/10/12/spring-boot入门/20181012150010.png"><br>右下角会出现一个AutoImport<br><img src="/2018/10/12/spring-boot入门/20181012151419.png"><br>如果你和我一样很不幸的点了×但是又不想重来一遍,那么就在settings中设置Maven-importing<br><img src="/2018/10/12/spring-boot入门/20181012151700.png"><br>这个设置呢就意味着IDEA会自动帮我们导入依赖</p><p>3.导入依赖，在pom.xml中加入：</p><pre><code>   &lt;parent&gt;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;&lt;version&gt;1.5.9.RELEASE&lt;/version&gt;&lt;/parent&gt;&lt;dependencies&gt;&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;&lt;/dependency&gt;&lt;/dependencies&gt;</code></pre><p>就可以看到右下角在自动下载jar包</p><p>4.写HelloWorld，在main里新建一个HelloWorld的class</p><pre><code>import org.springframework.boot.SpringApplication;import org.springframework.boot.autoconfigure.SpringBootApplication;/*    @SpringBootApplication 来标注一个主程序类，说明这是一个Spring Boot应用 */@SpringBootApplicationpublic class HelloWorld {    public static void main(String[] args){        SpringApplication.run(HelloWorld.class,args);    }}</code></pre><p>5.编写相关的Controller</p><pre><code>@Controllerpublic class HelloWorldController {    @ResponseBody    @RequestMapping(&quot;/hello&quot;)    public String hello(){        return &quot;Hello World&quot;;    }}</code></pre><blockquote><p>补习：@ResponseBody是作用在方法上的，@ResponseBody 表示该方法的返回结果直接写入 HTTP response body 中，一般在异步获取数据时使用【也就是AJAX】，在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。@RequestBody 将 HTTP 请求正文插入方法中，使用适合的 HttpMessageConverter 将请求体写入某个对象。<a href="https://www.cnblogs.com/daimajun/p/7152970.html" target="_blank" rel="noopener">来源</a></p></blockquote><p>6.运行main方法<br><img src="/2018/10/12/spring-boot入门/20181012160811.png"></p><blockquote><p>可以看到整个过程是非常简单的，也就只有注入依赖、写主程序和控制器就没了，回顾一下springMVC应用的流程，配置bean 创建Ioc容器 在程序中获取bean实例 还有SpringMVC的ModelAndView，（虽然我SpringMVC只是学了个大概，没有实践过），SpringBoot的出现一定是为了我这样的懒人减少配置的步骤才出现的吧</p></blockquote><p>7.打包，接下来加一个插件</p><pre><code>&lt;!-- 这个插件可以将应用打包成一个可执行的jar包 --&gt;    &lt;build&gt;        &lt;plugins&gt;            &lt;plugin&gt;                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;            &lt;/plugin&gt;        &lt;/plugins&gt;    &lt;/build&gt;</code></pre><p>无需再目标服务器安装tomcat环境,接着在右侧看到Maven Projects点开，点package让他装<br><img src="/2018/10/12/spring-boot入门/20181012162729.png"><br><img src="/2018/10/12/spring-boot入门/20181012163051.png"><br>用cmd执行<code>java -jar jar包名称</code>就可以一样把应用跑起来，这就是SpringBoot对部署带来的便捷</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;虽然工作用不到springboot，甚至没有用到spring，但这也就是为什么我有了强烈的危机感，现在许多地方应该会用到吧，或许标题应该是从零开始学springboot。跟着尚硅谷的springboot视频学习，如有侵权请留言或发&lt;a href=&quot;
+      
+    
+    </summary>
+    
+      <category term="spring boot" scheme="http://yoursite.com/categories/spring-boot/"/>
+    
+    
+      <category term="spring boot" scheme="http://yoursite.com/tags/spring-boot/"/>
+    
+      <category term="java ee" scheme="http://yoursite.com/tags/java-ee/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java面试题汇总</title>
+    <link href="http://yoursite.com/2018/10/11/Java%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB/"/>
+    <id>http://yoursite.com/2018/10/11/Java面试题汇总/</id>
+    <published>2018-10-11T03:23:53.000Z</published>
+    <updated>2018-10-11T09:12:38.359Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>有可能不全是Java的知识，只是时间一长感觉这些知识会忘了，就把我遇到的和我了解的先列列看吧。其中会出现许多来自百度、知乎、CSDN等处的内容，就不一一列出来了。</p></blockquote><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><h4 id="private、protected、public、default的区别"><a href="#private、protected、public、default的区别" class="headerlink" title="private、protected、public、default的区别"></a>private、protected、public、default的区别</h4><p><img src="https://images2015.cnblogs.com/blog/690292/201609/690292-20160923095944481-1758567758.png"></p><p>private 的访问权限仅限于类的内部，是一种封装的体现，大多数成员变量都是private的，使它不能被任何外部的类访问。</p><p>不写时默认为default，即同一包内、类内。</p><h4 id="封装、继承、多态、抽象"><a href="#封装、继承、多态、抽象" class="headerlink" title="封装、继承、多态、抽象"></a>封装、继承、多态、抽象</h4><p>众所周知的面向对象的特征。</p><p>封装：把对象的属性、方法结合成一个独立的整体，这也就是模块化的思想</p><p>继承：一个类可以继承(extends) 父类，就变成了他的子类，继承了父类所有的非私有的方法与属性，哪些内容会被继承见上面的图，继承的方法一般可以重写，继承与重载的权限如下图所示</p><p><img src="https://pic1.zhimg.com/80/v2-a836e010f9e147509844b79529f5a176_hd.jpg"></p><p>多态：不同的对象对同一消息做出不一样的响应，采取不同的方法。最直观的例子就是一个实体类可以有多个构造方法。</p><p>抽象：有相同特性的类抽象出共同的部分，用abstract修饰，抽象类的意义可以用三句话来概括：1.为其它子类提供一个公共的类型 2.封装子类中重复定义的内容 3.定义统一抽象方法，</p><p>抽象方法没有方法体。</p><h4 id="抽象类与接口的区别"><a href="#抽象类与接口的区别" class="headerlink" title="抽象类与接口的区别"></a>抽象类与接口的区别</h4><p>抽象和接口通常被放在一起比较</p><p><strong>实现方式</strong>：抽象类用extends继承，接口用implements，需要提供接口中所有声明的实现。</p><p><strong>是否可以被实例化</strong>：抽象类不可以，接口则是完全不同的类型，接口不是类，更不能被实例化</p><p><strong>构造器：</strong>抽象类中可以有构造器，接口不能</p><p><strong>修饰符：</strong>抽象方法可以有public、protected、default修饰，接口默认为public，不能被其他修饰符修饰</p><p><strong>是否可以多继承</strong>：抽象类有传递性质，但只能继承一个父类，却可以同时实现多个接口</p><p><strong>构造方法</strong>：接口没有构造方法</p><p>接口的意义在于规范，扩展，回调</p><h4 id="Overload和Override的区别"><a href="#Overload和Override的区别" class="headerlink" title="Overload和Override的区别"></a>Overload和Override的区别</h4><p>重写Override，子类覆盖父类的方法，将子类传与父类的引用调用的还是子类的方法。<br>重载Overloading，一个类多个方法，名称相同，参数个数类型不同，返回值的类型也可不同。<br>两者都是Java多态性的不同表现。</p><h4 id="Final有什么作用"><a href="#Final有什么作用" class="headerlink" title="Final有什么作用"></a>Final有什么作用</h4><p>修饰的属性为常量<br>修饰的方法不可以重写<br>修饰的类不可以继承</p><h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>this()和super()的意义</p><p>什么是不可变对象</p><p>Object有哪些公共方法？（equals(),clone(),getClass(),notify(),notifyAll(),wait(),toString()）</p><h3 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h3><h4 id="ArrayList和Vector的区别"><a href="#ArrayList和Vector的区别" class="headerlink" title="ArrayList和Vector的区别"></a>ArrayList和Vector的区别</h4><p>ArrayList:线程不安全，速度快<br>Vector:线程安全，速度慢(synchoronized)<br>两者都实现了List接口，都是有序的集合，允许重复和null</p><p>LikedList: 以单链表的方式存储，增、删快，查、改慢</p><h4 id="HashMap和Hashtable的区别"><a href="#HashMap和Hashtable的区别" class="headerlink" title="HashMap和Hashtable的区别"></a>HashMap和Hashtable的区别</h4><p>HashMap与Hashtable都实现的Map接口,HashTable线程安全，HashMap线程不安全。</p><h4 id="Collection-和-Collections的区别"><a href="#Collection-和-Collections的区别" class="headerlink" title="Collection 和 Collections的区别"></a>Collection 和 Collections的区别</h4><p>Collection是集合的根接口，其下有set（无序）及list（有序）<br>Collections是集合的算法。</p><p>Map不继承于Collection，是无序的键值对的集合，不允许重复</p><h4 id="Enumeration和Iterator接口的区别"><a href="#Enumeration和Iterator接口的区别" class="headerlink" title="Enumeration和Iterator接口的区别"></a>Enumeration和Iterator接口的区别</h4><p>Enumeration比Iterator更加安全，因为当一个集合正在被遍历的时候，它会阻止其它线程去修改集合。</p><p>Iterator能够删除元素，Enumeration不能。</p><h4 id="ArrayList集合加入1万条数据，应该怎么提高效率"><a href="#ArrayList集合加入1万条数据，应该怎么提高效率" class="headerlink" title="ArrayList集合加入1万条数据，应该怎么提高效率"></a>ArrayList集合加入1万条数据，应该怎么提高效率</h4><p>ArrayList的默认初始容量为10，要插入大量数据的时候需要不断扩容，而扩容是非常影响性能的。因此，现在明确了10万条数据了，我们可以直接在初始化的时候就设置ArrayList的容量！</p><h4 id="HashMap的key值要是为类对象则该类需要满足什么条件？"><a href="#HashMap的key值要是为类对象则该类需要满足什么条件？" class="headerlink" title="HashMap的key值要是为类对象则该类需要满足什么条件？"></a>HashMap的key值要是为类对象则该类需要满足什么条件？</h4><p>转载自<a href="https://segmentfault.com/a/1190000014403696#articleHeader11" target="_blank" rel="noopener">这里</a></p><p>需同时重写该类的hashCode()方法和它的equals()方法。</p><p>一般来说，我们会认为：只要两个对象的成员变量的值是相等的，那么我们就认为这两个对象是相等的！因为，Object底层比较的是两个对象的地址，而对我们开发来说这样的意义并不大~这也就为什么我们要重写equals()方法</p><p>重写了equals()方法，就要重写hashCode()的方法。因为equals()认定了这两个对象相同，而同一个对象调用hashCode()方法时，是应该返回相同的值的</p><h4 id="与equals"><a href="#与equals" class="headerlink" title="== 与equals"></a>== 与equals</h4><p>==：主要用于基本数据类型（byte、int、char、long、float、double、boolean和short）及引用<br>equals()：用于对象及引用，（String一般用equals）</p><h2 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h2><h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="事务的概念"><a href="#事务的概念" class="headerlink" title="事务的概念"></a>事务的概念</h4><p>事务是是并发控制单位，要么全部做要么劝都不做。如果你自己不去控制事务，数据库默认一条sql语句就处在自己单独的事务当中。以BEGIN TRANSACTION开始，以COMMIT或ROLLBACK结束。</p><h4 id="事务的特性"><a href="#事务的特性" class="headerlink" title="事务的特性"></a>事务的特性</h4><p>（呃啊这需要理解到位，第一次面试遇到过的题目）<br><strong>原子性、一致性、隔离性、持久性</strong><br>链接：<a href="https://blog.csdn.net/leprovision/article/details/81021675" target="_blank" rel="noopener">什么是事务,事务的四个特性是什么</a><br>⑴ 原子性（Atomicity）<br>　　原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚，这和前面两篇博客介绍事务的功能是一样的概念，因此事务的操作如果成功就必须要完全应用到数据库，如果操作失败则不能对数据库有任何影响。</p><p>⑵ 一致性（Consistency）<br>　　一致性是指事务必须使数据库从一个一致性状态变换到另一个一致性状态，也就是说一个事务执行之前和执行之后都必须处于一致性状态。</p><p>　　拿转账来说，假设用户A和用户B两者的钱加起来一共是5000，那么不管A和B之间如何转账，转几次账，事务结束后两个用户的钱相加起来应该还得是5000，这就是事务的一致性。</p><p>⑶ 隔离性（Isolation）</p><p>　　隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。</p><p>　　即要达到这么一种效果：对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都感觉不到有其他事务在并发地执行。</p><p>　　关于事务的隔离性数据库提供了多种隔离级别，稍后会介绍到。</p><p>⑷ 持久性（Durability）</p><p>　　持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的，即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作。</p><p>　　例如我们在使用JDBC操作数据库时，在提交事务方法后，提示用户事务操作完成，当我们程序执行完成直到看到提示后，就可以认定事务以及正确提交，即使这时候数据库出现了问题，也必须要将我们的事务完全执行完成，否则就会造成我们看到提示事务处理完毕，但是数据库因为故障而没有执行事务的重大错误。</p><p>　　以上介绍完事务的四大特性(简称ACID)，现在重点来说明下事务的隔离性，当多个线程都开启事务操作数据库中的数据时，数据库系统要能进行隔离操作，以保证各个线程获取数据的准确性，在介绍数据库提供的各种隔离级别之前，我们先看看如果不考虑事务的隔离性，会发生的几种问题：</p><p>1，脏读</p><p>　　脏读是指在一个事务处理过程里读取了另一个未提交的事务中的数据。</p><p>　　当一个事务正在多次修改某个数据，而在这个事务中这多次的修改都还未提交，这时一个并发的事务来访问该数据，就会造成两个事务得到的数据不一致。例如：用户A向用户B转账100元，对应SQL命令如下</p><p>update account set money=money+100 where name=’B’; (此时A通知B) update account set money=money - 100 where name=’A’;</p><p>　　当只执行第一条SQL时，A通知B查看账户，B发现确实钱已到账（此时即发生了脏读），而之后无论第二条SQL是否执行，只要该事务不提交，则所有操作都将回滚，那么当B以后再次查看账户时就会发现钱其实并没有转。</p><p>2，不可重复读</p><p>　　不可重复读是指在对于数据库中的某个数据，一个事务范围内多次查询却返回了不同的数据值，这是由于在查询间隔，被另一个事务修改并提交了。</p><p>　　例如事务T1在读取某一数据，而事务T2立马修改了这个数据并且提交事务给数据库，事务T1再次读取该数据就得到了不同的结果，发送了不可重复读。</p><p>　　不可重复读和脏读的区别是，脏读是某一事务读取了另一个事务未提交的脏数据，而不可重复读则是读取了前一事务提交的数据。</p><p>　　在某些情况下，不可重复读并不是问题，比如我们多次查询某个数据当然以最后查询得到的结果为主。但在另一些情况下就有可能发生问题，例如对于同一个数据A和B依次查询就可能不同，A和B就可能打起来了……</p><p>3，虚读(幻读)</p><p>　　幻读是事务非独立执行时发生的一种现象。例如事务T1对一个表中所有的行的某个数据项做了从“1”修改为“2”的操作，这时事务T2又对这个表中插入了一行数据项，而这个数据项的数值还是为“1”并且提交给数据库。而操作事务T1的用户如果再查看刚刚修改的数据，会发现还有一行没有修改，其实这行是从事务T2中添加的，就好像产生幻觉一样，这就是发生了幻读。</p><p>　　幻读和不可重复读都是读取了另一条已经提交的事务（这点就脏读不同），所不同的是不可重复读查询的都是同一个数据项，而幻读针对的是一批数据整体（比如数据的个数）。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;有可能不全是Java的知识，只是时间一长感觉这些知识会忘了，就把我遇到的和我了解的先列列看吧。其中会出现许多来自百度、知乎、CSDN等处的内容，就不一一列出来了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Java&quot;&gt;&lt;a href=&quot;#
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>获取指定行所在的列</title>
