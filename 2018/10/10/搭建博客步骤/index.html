@@ -95,7 +95,8 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018151019.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018151145.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018152156.png">
-<meta property="og:updated_time" content="2018-10-18T07:29:27.920Z">
+<meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018152406.png">
+<meta property="og:updated_time" content="2018-10-18T07:31:53.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建博客步骤">
 <meta name="twitter:description" content="写在前面，这其实不是我第一次搭博客，之前尝试过一次但是兴致冲冲地找了很多教程做到后来发现hexo装的就有些问题，并不是网上的教程不详细，但是东看西看容易出错，这里重头再来一遍，把之前的坑都补上  安装Nexo前提：安装好了node.js和git 1)新建一个空的文件夹，用于存放你的项目，在其中打开Git Bash 2)依次执行以下命令： npm install hexo-cli -g hexo">
@@ -465,17 +466,15 @@ WYuyin，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一
 <p>  deploy:</p>
 <pre><code>type: git
 repository: 
-      github: https://github.com/WYuyin/WYuyin.github.io.git
-      coding: git@git.coding.net:WYuyin/WYuyin.git,master
-branch: master
+</code></pre><p>  github: <a href="https://github.com/WYuyin/WYuyin.github.io.git" target="_blank" rel="noopener">https://github.com/WYuyin/WYuyin.github.io.git</a><br>  coding: <a href="mailto:git@git.coding.net" target="_blank" rel="noopener">git@git.coding.net</a>:WYuyin/WYuyin.git,master</p>
+<pre><code>branch: master
 </code></pre></li>
 <li><p>正式部署到Coding.net：<br>打开命令行窗口，定位到当前hexo项目的根目录下，运行以下指令将本地博客部署到Github和Coding.net上：</p>
-<p>  hexo g<br>  hexo d</p>
+<pre><code>hexo g
+hexo d
+</code></pre></li>
+<li><p>设置Coding Page：<br><img src="/2018/10/10/搭建博客步骤/20181018152156.png"><br>设置成功后是这个样子<br><img src="/2018/10/10/搭建博客步骤/20181018152406.png"></p>
 </li>
-<li><p>设置Coding Page：<br><img src="/2018/10/10/搭建博客步骤/20181018152156.png"><br>设置成功后是这个样子</p>
-<ing src="搭建博客步骤/20181018152406.png">
-
-</ing></li>
 </ul>
 <p>然后访问<a href="http://wyuyin.coding.me/" target="_blank" rel="noopener">http://wyuyin.coding.me/</a>就可以啦，无需等待立马就可以见到效果,访问的速度比之前快了一倍，另外我也对next的js做了一些调整，这里参考<a href="https://blog.csdn.net/Domino_b/article/details/81704118" target="_blank" rel="noopener">Soul_wwb的CSDN</a></p>
 
