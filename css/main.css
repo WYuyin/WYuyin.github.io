@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5b2e08;
+  background: #f0f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3188,4 +3188,7 @@ blockquote {
   height: 30px;
   background: url("../images/miao2.png");
   margin-top: -12px;
+}
+body {
+  background: #f7f7f7;
 }
