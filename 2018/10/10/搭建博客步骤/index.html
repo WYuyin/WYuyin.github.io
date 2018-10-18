@@ -91,7 +91,11 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181010112351.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181010112817.png">
-<meta property="og:updated_time" content="2018-10-18T06:39:34.708Z">
+<meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018145958.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018151019.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018151145.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018152156.png">
+<meta property="og:updated_time" content="2018-10-18T07:26:46.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建博客步骤">
 <meta name="twitter:description" content="写在前面，这其实不是我第一次搭博客，之前尝试过一次但是兴致冲冲地找了很多教程做到后来发现hexo装的就有些问题，并不是网上的教程不详细，但是东看西看容易出错，这里重头再来一遍，把之前的坑都补上  安装Nexo前提：安装好了node.js和git 1)新建一个空的文件夹，用于存放你的项目，在其中打开Git Bash 2)依次执行以下命令： npm install hexo-cli -g hexo">
@@ -319,7 +323,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k 字
+                  2.1k 字
                 </span>
               
 
@@ -335,7 +339,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4 min
+                  8 min
                 </span>
               
             </div>
@@ -395,7 +399,7 @@ branch: master
 $ hexo g &amp;&amp; hexo s   #如需本地预览，执行这一条
 </code></pre><p>提交了后并不是立马刷新的，稍微等十几秒钟才能更新</p>
 <h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>这里根据个人喜好装饰博客，我之前其实已经做完了这些工作，一些配置就直接复制的之前的配置文件，这里区分两个配置文件，一个是安装hexo时生成的，还有一个是next主题中的，位置blog\themes\next_config.yml，修改样式主要在这两个中，另外如果想修改NexT的css样式，直接添加进\blog\themes\next\source\css_custom\custom.styl</p>
-<p>大多数样式参考了<a href="https://reuixiy.github.io/technology/computer/computer-aided-art/2017/06/09/hexo-next-optimization.html" target="_blank" rel="noopener">大佬的博客!</a></p>
+<p>样式的修改参考了<a href="https://reuixiy.github.io/technology/computer/computer-aided-art/2017/06/09/hexo-next-optimization.html" target="_blank" rel="noopener">大佬的博客</a></p>
 <p>下面就一些我遇到的坑记录解决方法</p>
 <h4 id="字数与阅读时长"><a href="#字数与阅读时长" class="headerlink" title="字数与阅读时长"></a>字数与阅读时长</h4><p>链接：<a href="https://www.jianshu.com/p/baea8c95e39b" target="_blank" rel="noopener">Hexo添加字数统计、阅读时长</a></p>
 <h4 id="代码块高亮颜色"><a href="#代码块高亮颜色" class="headerlink" title="代码块高亮颜色"></a>代码块高亮颜色</h4><p>在配置文件中找到：</p>
@@ -423,6 +427,44 @@ $ hexo g &amp;&amp; hexo s   #如需本地预览，执行这一条
   length: 150
 </code></pre><h4 id="评论与其他"><a href="#评论与其他" class="headerlink" title="评论与其他"></a>评论与其他</h4><p>上面收集的是一些我开博客遇到的问题，另外有一些样式上的问题比较简单。评论我用了<a href="https://livere.com/introduce" target="_blank" rel="noopener">来必力</a>，网上有很多其他的第三方评论平台都已经停了，所以只能暂时用这个，还算方便快捷。</p>
 <p>这里就告一段落啦，如果有问题欢迎留言讨论，不过我也还是一个小菜鸡呀</p>
+<hr>
+<p>10.18日更新</p>
+<h4 id="置顶"><a href="#置顶" class="headerlink" title="置顶"></a>置顶</h4><pre><code>$ npm uninstall hexo-generator-index --save
+$ npm install hexo-generator-index-pin-top --save
+</code></pre><p>然后在文章顶部+<code>top: true</code>就可以啦。另外还找到一个方法是改js，设置top的优先级，还未试过，这边给出<a href="https://www.jianshu.com/p/42a4efcdf8d7" target="_blank" rel="noopener">链接</a></p>
+<h4 id="菜单点击出现的小图案"><a href="#菜单点击出现的小图案" class="headerlink" title="菜单点击出现的小图案"></a>菜单点击出现的小图案</h4><p>总的来说看上去还是一个标标准准的Next风格，其实想变得与众不同一些我在一些小细节上还是做了很多改动的！比如这个点击菜单出现的喵喵图案，改起来其实并不难。<br>第一步，找一个背景透明，缩小看也不失真的图片，我是用ps调整的图片大小，【用画图工具的话好像会留白】，调整大小为30px*30px<br>第二步，将图片放在blog\themes\next\source\images目录下，和改icon的目录一致<br>第三步，修改\blog\themes\next\source\css_custom\custom.styl文件，添加：</p>
+<pre><code>//菜单
+.menu-item-active a:after {
+    width: 30px;
+    height: 30px;
+    background: url(&quot;../images/miao2.png&quot;);
+    margin-top: -12px;//调整好位置
+}
+</code></pre><p>第四步，预览并调试图片的位置，上面的margintop是我调整后觉得合适的边距，主题不一样可能位置有偏差，用浏览器的开发者工具调整到一个最佳的角度就ok，效果：<img src="/2018/10/10/搭建博客步骤/20181018145958.png"></p>
+<h4 id="加速博客浏览速度"><a href="#加速博客浏览速度" class="headerlink" title="加速博客浏览速度"></a>加速博客浏览速度</h4><p>找到一个好的博客真的是很难得，<a href="https://blog.csdn.net/linshuhe1/article/details/71170499" target="_blank" rel="noopener">河乐不为的CSDN</a>，<strong>重点！重点</strong>这里的操作完全和文中的一样，且没有遇到坑，惊喜</p>
+<ul>
+<li>注册Coding.net账号：<br>打开<a href="https://coding.net/" target="_blank" rel="noopener">Coding.net官网</a>，注册一个个人账号</li>
+<li>新建项目<br>注意项目名与注册用的账户名一致，这里我用的是WYuyin：</li>
+<li>添加公钥<br>上面设置完毕之后点击创建项目，然后点击设置-&gt;部署公钥-&gt;新建部署公钥，之前部署到Github上的时候，本地目录 C\User(中文为用户)(电脑用户名).ssh 目录下会有 github.rsa.pub 公钥文件，打开然后复制里面的内容，直接贴在这里的公钥框中：<br><img src="/2018/10/10/搭建博客步骤/20181018151019.png"><br><img src="/2018/10/10/搭建博客步骤/20181018151145.png"><blockquote>
+<p>记得要勾选 授予推送权限 ，否则在后面运行hexo d时会提示错误：<br>  Coding.net Tips : [Deploy key is not allowed to push!]<br>  fatal: Could not read from remote repository.<br>原因就是没有推送权限。</p>
+</blockquote>
+</li>
+</ul>
+<p>打开Git命令窗口，输入以下指令：<br>    ssh -T <a href="mailto:git@git.coding.NET" target="_blank" rel="noopener">git@git.coding.NET</a></p>
+<p>假如出现以下输出结果，表示公钥绑定成功：<br>    The authenticity of host ‘git.coding.net (118.25.166.124)’ can’t be established.<br>    RSA key fingerprint is SHA256:jok3FH7q5LJ6qvE7iPNehBgXRw51ErE77S0Dn+Vg/Ik.<br>    Are you sure you want to continue connecting (yes/no)? y<br>    Please type ‘yes’ or ‘no’: yes<br>    Warning: Permanently added ‘git.coding.net,118.25.166.124’ (RSA) to the list of known hosts.<br>    Coding 提示: Hello WYuyin, You’ve connected to Coding.net via SSH. This is a deploy key.<br>    WYuyin，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一个部署公钥</p>
+<ul>
+<li>修改hexo配置<br>打开hexo本地的配置文件 _config.yml，修改 deploy 的配置内容，这里设置了运行hexo d之后部署的目的地址，原本只有Github地址，现在添加多Coding.net的地址，其中WYuyin是注册该平台的 用户名：<br>  deploy:<pre><code>type: git
+repository: 
+      github: https://github.com/WYuyin/WYuyin.github.io.git
+      coding: git@git.coding.net:WYuyin/WYuyin.git,master
+branch: master
+</code></pre></li>
+<li>正式部署到Coding.net：<br>打开命令行窗口，定位到当前hexo项目的根目录下，运行以下指令将本地博客部署到Github和Coding.net上：<br>  hexo g<br>  hexo d</li>
+<li>设置Coding Page：<br><img src="/2018/10/10/搭建博客步骤/20181018152156.png"><br>设置成功后是这个样子<ing src="搭建博客步骤/20181018152406.png">
+
+</ing></li>
+</ul>
+<p>然后访问<a href="http://wyuyin.coding.me/" target="_blank" rel="noopener">http://wyuyin.coding.me/</a>就可以啦，无需等待立马就可以见到效果,访问的速度比之前快了一倍，另外我也对next的js做了一些调整，这里参考<a href="https://blog.csdn.net/Domino_b/article/details/81704118" target="_blank" rel="noopener">Soul_wwb的CSDN</a></p>
 
       
     </div>
@@ -621,7 +663,7 @@ $ hexo g &amp;&amp; hexo s   #如需本地预览，执行这一条
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Nexo"><span class="nav-number">1.</span> <span class="nav-text">安装Nexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署到GitHub-Pages"><span class="nav-number">2.</span> <span class="nav-text">部署到GitHub Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用NexT"><span class="nav-number">3.</span> <span class="nav-text">使用NexT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">4.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字数与阅读时长"><span class="nav-number">4.1.</span> <span class="nav-text">字数与阅读时长</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码块高亮颜色"><span class="nav-number">4.2.</span> <span class="nav-text">代码块高亮颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建分类与标签"><span class="nav-number">4.3.</span> <span class="nav-text">创建分类与标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博客icon更替"><span class="nav-number">4.4.</span> <span class="nav-text">博客icon更替</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在博客中添加图片"><span class="nav-number">4.5.</span> <span class="nav-text">在博客中添加图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首页不显示全文"><span class="nav-number">4.6.</span> <span class="nav-text">首页不显示全文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评论与其他"><span class="nav-number">4.7.</span> <span class="nav-text">评论与其他</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Nexo"><span class="nav-number">1.</span> <span class="nav-text">安装Nexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署到GitHub-Pages"><span class="nav-number">2.</span> <span class="nav-text">部署到GitHub Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用NexT"><span class="nav-number">3.</span> <span class="nav-text">使用NexT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">4.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字数与阅读时长"><span class="nav-number">4.1.</span> <span class="nav-text">字数与阅读时长</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码块高亮颜色"><span class="nav-number">4.2.</span> <span class="nav-text">代码块高亮颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建分类与标签"><span class="nav-number">4.3.</span> <span class="nav-text">创建分类与标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博客icon更替"><span class="nav-number">4.4.</span> <span class="nav-text">博客icon更替</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在博客中添加图片"><span class="nav-number">4.5.</span> <span class="nav-text">在博客中添加图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首页不显示全文"><span class="nav-number">4.6.</span> <span class="nav-text">首页不显示全文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评论与其他"><span class="nav-number">4.7.</span> <span class="nav-text">评论与其他</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#置顶"><span class="nav-number">4.8.</span> <span class="nav-text">置顶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#菜单点击出现的小图案"><span class="nav-number">4.9.</span> <span class="nav-text">菜单点击出现的小图案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加速博客浏览速度"><span class="nav-number">4.10.</span> <span class="nav-text">加速博客浏览速度</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -655,7 +697,7 @@ $ hexo g &amp;&amp; hexo s   #如需本地预览，执行这一条
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">6k</span>
+    <span title="Site words total count">6.9k</span>
   
 </div>
 
