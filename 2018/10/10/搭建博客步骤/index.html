@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018151019.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018151145.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018152156.png">
-<meta property="og:updated_time" content="2018-10-18T07:26:46.120Z">
+<meta property="og:updated_time" content="2018-10-18T07:29:27.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建博客步骤">
 <meta name="twitter:description" content="写在前面，这其实不是我第一次搭博客，之前尝试过一次但是兴致冲冲地找了很多教程做到后来发现hexo装的就有些问题，并不是网上的教程不详细，但是东看西看容易出错，这里重头再来一遍，把之前的坑都补上  安装Nexo前提：安装好了node.js和git 1)新建一个空的文件夹，用于存放你的项目，在其中打开Git Bash 2)依次执行以下命令： npm install hexo-cli -g hexo">
@@ -450,17 +450,30 @@ $ npm install hexo-generator-index-pin-top --save
 </blockquote>
 </li>
 </ul>
-<p>打开Git命令窗口，输入以下指令：<br>    ssh -T <a href="mailto:git@git.coding.NET" target="_blank" rel="noopener">git@git.coding.NET</a></p>
-<p>假如出现以下输出结果，表示公钥绑定成功：<br>    The authenticity of host ‘git.coding.net (118.25.166.124)’ can’t be established.<br>    RSA key fingerprint is SHA256:jok3FH7q5LJ6qvE7iPNehBgXRw51ErE77S0Dn+Vg/Ik.<br>    Are you sure you want to continue connecting (yes/no)? y<br>    Please type ‘yes’ or ‘no’: yes<br>    Warning: Permanently added ‘git.coding.net,118.25.166.124’ (RSA) to the list of known hosts.<br>    Coding 提示: Hello WYuyin, You’ve connected to Coding.net via SSH. This is a deploy key.<br>    WYuyin，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一个部署公钥</p>
-<ul>
-<li>修改hexo配置<br>打开hexo本地的配置文件 _config.yml，修改 deploy 的配置内容，这里设置了运行hexo d之后部署的目的地址，原本只有Github地址，现在添加多Coding.net的地址，其中WYuyin是注册该平台的 用户名：<br>  deploy:<pre><code>type: git
+<p>打开Git命令窗口，输入以下指令：</p>
+<pre><code>ssh -T git@git.coding.NET
+</code></pre><p>假如出现以下输出结果，表示公钥绑定成功：</p>
+<pre><code>The authenticity of host &apos;git.coding.net (118.25.166.124)&apos; can&apos;t be established.
+RSA key fingerprint is SHA256:jok3FH7q5LJ6qvE7iPNehBgXRw51ErE77S0Dn+Vg/Ik.
+Are you sure you want to continue connecting (yes/no)? y
+Please type &apos;yes&apos; or &apos;no&apos;: yes
+Warning: Permanently added &apos;git.coding.net,118.25.166.124&apos; (RSA) to the list of known hosts.
+Coding 提示: Hello WYuyin, You&apos;ve connected to Coding.net via SSH. This is a deploy key.
+WYuyin，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一个部署公钥
+</code></pre><ul>
+<li><p>修改hexo配置<br>打开hexo本地的配置文件 _config.yml，修改 deploy 的配置内容，这里设置了运行hexo d之后部署的目的地址，原本只有Github地址，现在添加多Coding.net的地址，其中WYuyin是注册该平台的 用户名：</p>
+<p>  deploy:</p>
+<pre><code>type: git
 repository: 
       github: https://github.com/WYuyin/WYuyin.github.io.git
       coding: git@git.coding.net:WYuyin/WYuyin.git,master
 branch: master
 </code></pre></li>
-<li>正式部署到Coding.net：<br>打开命令行窗口，定位到当前hexo项目的根目录下，运行以下指令将本地博客部署到Github和Coding.net上：<br>  hexo g<br>  hexo d</li>
-<li>设置Coding Page：<br><img src="/2018/10/10/搭建博客步骤/20181018152156.png"><br>设置成功后是这个样子<ing src="搭建博客步骤/20181018152406.png">
+<li><p>正式部署到Coding.net：<br>打开命令行窗口，定位到当前hexo项目的根目录下，运行以下指令将本地博客部署到Github和Coding.net上：</p>
+<p>  hexo g<br>  hexo d</p>
+</li>
+<li><p>设置Coding Page：<br><img src="/2018/10/10/搭建博客步骤/20181018152156.png"><br>设置成功后是这个样子</p>
+<ing src="搭建博客步骤/20181018152406.png">
 
 </ing></li>
 </ul>
