@@ -96,7 +96,8 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/12/spring-boot入门/20181012160811.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/12/spring-boot入门/20181012162729.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/12/spring-boot入门/20181012163051.png">
-<meta property="og:updated_time" content="2018-10-15T09:31:40.847Z">
+<meta property="og:image" content="http://yoursite.com/2018/10/12/spring-boot入门/20181022111750.png">
+<meta property="og:updated_time" content="2018-10-22T05:56:16.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring boot入门">
 <meta name="twitter:description" content="虽然工作用不到springboot，甚至没有用到spring，但这也就是为什么我有了强烈的危机感，现在许多地方应该会用到吧，或许标题应该是从零开始学springboot。跟着尚硅谷的springboot视频学习，如有侵权请留言或发邮箱告诉我  spring boot是用于简化spring开发的框架，是基于spring再封装的一个框架优点：  快速创建独立运行的Spring项目以及与主流框架集成">
@@ -356,7 +357,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k 字
+                  1.3k 字
                 </span>
               
 
@@ -372,7 +373,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4 min
+                  5 min
                 </span>
               
             </div>
@@ -497,7 +498,29 @@ return &quot;Hello World&quot;;
 </code></pre></li>
 </ol>
 <p>无需再目标服务器安装tomcat环境,接着在右侧看到Maven Projects点开，点package让他装<br><img src="/2018/10/12/spring-boot入门/20181012162729.png"><br>打包好的jar包存在于target文件夹下<br><img src="/2018/10/12/spring-boot入门/20181012163051.png"><br>用cmd执行<code>java -jar jar包名称</code>就可以一样把应用跑起来，这就是SpringBoot对部署带来的便捷</p>
-<h2 id="quickDemo"><a href="#quickDemo" class="headerlink" title="quickDemo"></a>quickDemo</h2>
+<h2 id="quickDemo"><a href="#quickDemo" class="headerlink" title="quickDemo"></a>quickDemo</h2><p>可使用Spring Initializer快速创建SpringBoot项目</p>
+<p>IDE都支持使用Spring快速创建向导来开启一个SpringBoot项目</p>
+<p>步骤：<strong>New- Project- Spring Initializer</strong><br>在Dependencies下选择你要的依赖，然后向导会自动联网帮你配好这些依赖<img src="/2018/10/12/spring-boot入门/20181022111750.png">把不要的东西去掉。</p>
+<p>新建完成后会发现主程序已经帮你创好了，接下来只要写逻辑就可以了。</p>
+<p>Controller中的一个注解<strong>@RestController</strong>包含@Controller和@ResponseBody，ResponseBody在上面已经回顾过。标注在Controller上代表这是一个Controller类。</p>
+<pre><code>@RestController
+public class HelloController {
+
+@RequestMapping(&quot;/hello2&quot;)
+public String hello(){
+return &quot;quick hello&quot;;
+}
+}
+</code></pre><p>这下一个quickDemo就完成了，不仅比原先少写主配置文件和依赖，自动生成的目录结构也将静态资源和配置文件生成好了</p>
+<pre><code>-main
+---java
+------com.quickdemo.demo
+---------DemoApplication
+---resources
+------static    这个放静态资源
+------templates    这个保存所有的模态页面
+------application.properties    配置文件
+</code></pre>
       
     </div>
     
@@ -735,7 +758,7 @@ return &quot;Hello World&quot;;
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7k</span>
+    <span title="Site words total count">7.3k</span>
   
 </div>
 
