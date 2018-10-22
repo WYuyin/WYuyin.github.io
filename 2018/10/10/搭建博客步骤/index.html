@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018151145.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018152156.png">
 <meta property="og:image" content="http://yoursite.com/2018/10/10/搭建博客步骤/20181018152406.png">
-<meta property="og:updated_time" content="2018-10-18T07:31:53.188Z">
+<meta property="og:updated_time" content="2018-10-22T01:43:30.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建博客步骤">
 <meta name="twitter:description" content="写在前面，这其实不是我第一次搭博客，之前尝试过一次但是兴致冲冲地找了很多教程做到后来发现hexo装的就有些问题，并不是网上的教程不详细，但是东看西看容易出错，这里重头再来一遍，把之前的坑都补上  安装Nexo前提：安装好了node.js和git 1)新建一个空的文件夹，用于存放你的项目，在其中打开Git Bash 2)依次执行以下命令： npm install hexo-cli -g hexo">
@@ -473,11 +473,12 @@ Coding 提示: Hello WYuyin, You&apos;ve connected to Coding.net via SSH. This i
 WYuyin，你好，你已经通过 SSH 协议认证 Coding.net 服务，这是一个部署公钥
 </code></pre><ul>
 <li><p>修改hexo配置<br>打开hexo本地的配置文件 _config.yml，修改 deploy 的配置内容，这里设置了运行hexo d之后部署的目的地址，原本只有Github地址，现在添加多Coding.net的地址，其中WYuyin是注册该平台的 用户名：</p>
-<p>  deploy:</p>
-<pre><code>type: git
-repository: 
-</code></pre><p>  github: <a href="https://github.com/WYuyin/WYuyin.github.io.git" target="_blank" rel="noopener">https://github.com/WYuyin/WYuyin.github.io.git</a><br>  coding: <a href="mailto:git@git.coding.net" target="_blank" rel="noopener">git@git.coding.net</a>:WYuyin/WYuyin.git,master</p>
-<pre><code>branch: master
+<pre><code>deploy:
+  type: git
+  repository: 
+github: https://github.com/WYuyin/WYuyin.github.io.git
+coding: git@git.coding.net:WYuyin/WYuyin.git,master
+  branch: master
 </code></pre></li>
 <li><p>正式部署到Coding.net：<br>打开命令行窗口，定位到当前hexo项目的根目录下，运行以下指令将本地博客部署到Github和Coding.net上：</p>
 <pre><code>hexo g
