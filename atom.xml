@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-18T06:43:22.080Z</updated>
+  <updated>2018-10-22T02:30:55.336Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Boot(一)</title>
+    <link href="http://yoursite.com/2018/10/22/Spring-Boot-%E4%B8%80/"/>
+    <id>http://yoursite.com/2018/10/22/Spring-Boot-一/</id>
+    <published>2018-10-22T01:54:18.000Z</published>
+    <updated>2018-10-22T02:30:55.336Z</updated>
+    
+    <content type="html"><![CDATA[<p>上一节写HelloWorldDemo时主程序类被修饰了一个<strong>@SpringBootApplication</strong>，【顾名思义-SpringBoot应用注解】标注在某各类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类的main方法来启动SpringBoot应用，是一个组合注解<br>这个组合注解中包含Spring里的<strong>@Configuration</strong>、<strong>@Import</strong>等底层注解，之前也说SpringBoot有自动配置的优点，那么只要你在主程序配置了<strong>@SpringBootApplication</strong>，其所在包及其中子包里所有的组件都扫描到Spring容器</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;上一节写HelloWorldDemo时主程序类被修饰了一个&lt;strong&gt;@SpringBootApplication&lt;/strong&gt;，【顾名思义-SpringBoot应用注解】标注在某各类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类
+      
+    
+    </summary>
+    
+      <category term="spring boot" scheme="http://yoursite.com/categories/spring-boot/"/>
+    
+    
+      <category term="spring boot" scheme="http://yoursite.com/tags/spring-boot/"/>
+    
+      <category term="java ee" scheme="http://yoursite.com/tags/java-ee/"/>
+    
+  </entry>
   
   <entry>
     <title>被IE支配的恐惧</title>
