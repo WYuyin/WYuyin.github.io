@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-10-22T03:06:53.636Z</updated>
+  <updated>2018-10-22T07:22:57.172Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,15 +21,15 @@
     <link href="http://yoursite.com/2018/10/22/Spring-Boot-%E4%B8%80/"/>
     <id>http://yoursite.com/2018/10/22/Spring-Boot-一/</id>
     <published>2018-10-22T01:54:18.000Z</published>
-    <updated>2018-10-22T03:06:53.636Z</updated>
+    <updated>2018-10-22T07:22:57.172Z</updated>
     
-    <content type="html"><![CDATA[<p>上一节写HelloWorldDemo时主程序类被修饰了一个<strong>@SpringBootApplication</strong>，【顾名思义-SpringBoot应用注解】标注在某各类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类的main方法来启动SpringBoot应用，是一个组合注解。</p><p>这个组合注解中包含Spring里的<strong>@Configuration</strong>、<strong>@Import</strong>等底层注解，之前也说SpringBoot有自动配置的优点，那么只要你在主程序配置了<strong>@SpringBootApplication</strong>，其所在包及其中子包里所有的组件都扫描到Spring容器，这是其中的<strong>@AutoConfigurationPackage</strong>【自动配置包】的作用</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h2><p>上一节写HelloWorldDemo时主程序类被修饰了一个<strong>@SpringBootApplication</strong>，【顾名思义-SpringBoot应用注解】标注在某各类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类的main方法来启动SpringBoot应用，是一个组合注解。</p><p>这个组合注解中包含Spring里的<strong>@Configuration</strong>、<strong>@Import、@EnableAutoConfiguration、@ComponentScan</strong>等底层注解，之前也说SpringBoot有自动配置的优点，那么只要你在主程序配置了<strong>@SpringBootApplication</strong>，其所在包及其中子包里所有的组件都扫描到Spring容器，这是其中的<strong>@AutoConfigurationPackage</strong>【自动配置包】的作用</p><h2 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h2><p><strong>@RestController</strong>标注在Controller类上，也是一个组合注解，主要包含<strong>@Controller</strong>和<strong>@ResponseBody</strong></p><p>@ResponseBody 表示该方法的返回结果直接写入 HTTP response body 中,页面不会发生跳转。</p><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>新建Spring Initializer项目时会生成一个application.properties，除了这个properties文件还支持yml格式的配置文件，两者的书写格式有所不同，yml更加的清爽适合用来作为配置文件。</p><p>在建博客的时候遇到的配置文件都是yml类型，所以已经有些熟悉。</p><h3 id="值的格式"><a href="#值的格式" class="headerlink" title="值的格式"></a>值的格式</h3><p>k: v    //k和v之间一定要有空格<br><strong>普通的值：数字，字符串，布尔</strong><br>字符串不用加引号，但如果字符串中含有空格或特殊字符，要用单引号括起来，否则会被转义。<br>布尔类型：用on、1、true来表示true，off、0、false来表示false<br><strong>对象、Map、数组</strong><br>对象的值就在下一行写对象的属性值，注意缩进。</p><pre><code>friends:     lastName: zhangsan    age: 20</code></pre><p>行内写法：【也是Map的写法】</p><pre><code>frends: {lastName: zhangsan,age: 20}</code></pre><p>数组：用”- “隔开<br>    pets:</p><pre><code>- cat- dog</code></pre><p>数组的行内写法：<br>    pets: [dog,cat]</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;上一节写HelloWorldDemo时主程序类被修饰了一个&lt;strong&gt;@SpringBootApplication&lt;/strong&gt;，【顾名思义-SpringBoot应用注解】标注在某各类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类
+        &lt;h2 id=&quot;SpringBootApplication&quot;&gt;&lt;a href=&quot;#SpringBootApplication&quot; class=&quot;headerlink&quot; title=&quot;@SpringBootApplication&quot;&gt;&lt;/a&gt;@SpringBootApplication
       
     
     </summary>
