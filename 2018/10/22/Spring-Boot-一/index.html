@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="一只小喵喵的博客">
 <meta property="og:description" content="@SpringBootApplication上一节写HelloWorldDemo时主程序类被修饰了一个@SpringBootApplication，【顾名思义-SpringBoot应用注解】标注在某各类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类的main方法来启动SpringBoot应用，是一个组合注解。 这个组合注解中包含Spring里的@Configur">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-22T07:22:57.172Z">
+<meta property="og:updated_time" content="2018-10-22T09:30:37.874Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot(一)">
 <meta name="twitter:description" content="@SpringBootApplication上一节写HelloWorldDemo时主程序类被修饰了一个@SpringBootApplication，【顾名思义-SpringBoot应用注解】标注在某各类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类的main方法来启动SpringBoot应用，是一个组合注解。 这个组合注解中包含Spring里的@Configur">
@@ -348,7 +348,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  434 字
+                  653 字
                 </span>
               
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 min
+                  2 min
                 </span>
               
             </div>
@@ -391,16 +391,43 @@
 <p>@ResponseBody 表示该方法的返回结果直接写入 HTTP response body 中,页面不会发生跳转。</p>
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>新建Spring Initializer项目时会生成一个application.properties，除了这个properties文件还支持yml格式的配置文件，两者的书写格式有所不同，yml更加的清爽适合用来作为配置文件。</p>
 <p>在建博客的时候遇到的配置文件都是yml类型，所以已经有些熟悉。</p>
-<h3 id="值的格式"><a href="#值的格式" class="headerlink" title="值的格式"></a>值的格式</h3><p>k: v    //k和v之间一定要有空格<br><strong>普通的值：数字，字符串，布尔</strong><br>字符串不用加引号，但如果字符串中含有空格或特殊字符，要用单引号括起来，否则会被转义。<br>布尔类型：用on、1、true来表示true，off、0、false来表示false<br><strong>对象、Map、数组</strong><br>对象的值就在下一行写对象的属性值，注意缩进。</p>
+<h3 id="值的格式"><a href="#值的格式" class="headerlink" title="值的格式"></a>值的格式</h3><p>k: v    //k和v之间一定要有空格</p>
+<p><strong>普通的值：数字，字符串，布尔</strong><br>字符串不用加引号，但如果字符串中含有空格或特殊字符，要用单引号括起来，否则会被转义。<br>布尔类型：用on、1、true来表示true，off、0、false来表示false</p>
+<p><strong>对象、Map、数组</strong><br>对象的值就在下一行写对象的属性值，注意缩进。</p>
 <pre><code>friends: 
     lastName: zhangsan
     age: 20
 </code></pre><p>行内写法：【也是Map的写法】</p>
 <pre><code>frends: {lastName: zhangsan,age: 20}
-</code></pre><p>数组：用”- “隔开<br>    pets:</p>
-<pre><code>- cat
-- dog
-</code></pre><p>数组的行内写法：<br>    pets: [dog,cat]</p>
+</code></pre><p>数组：用”- “隔开</p>
+<pre><code>pets:
+ - cat
+ - dog
+</code></pre><p>数组的行内写法：</p>
+<pre><code>pets: [dog,cat]
+</code></pre><h2 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h2><p>在配置文件中写好值后，如何获取参数？</p>
+<h3 id="ConfigurationProperties-1"><a href="#ConfigurationProperties-1" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>最常见的方法有将对象以映射的方式，将配置信息封装成一个类，创建一个class，在类上修饰：<strong>@Component</strong> 和 <strong>@ConfigurationProperties(prefix=”xxx”)</strong>,前者是将类变成一个JavaBean，后者表示前缀为xxx的配置信息被绑定</p>
+<p>我们可以导入<strong>配置文件处理器</strong>，写配置文件时会有相应包下bean的自动提示：</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+    &lt;optional&gt;true&lt;/optional&gt;
+&lt;/dependency&gt;
+</code></pre><p>JavaBean：</p>
+<pre><code>@Component
+@ConfigurationProperties(prefix = &quot;person&quot;)
+public class Person {
+    private String name;
+    private Integer age;
+    private List&lt;Object&gt; list;
+</code></pre><p>yml配置文件：</p>
+<pre><code>person:
+  age: 20
+  name: Zhangsan
+  list: 
+    - miao
+    - wang
+</code></pre><p>如果是properties文件要将文件编码改为ASCII码，否则会出现乱码，设置步骤为：Settings-File Encodings-√Transparent native-to-ascii conversion</p>
 
       
     </div>
@@ -442,6 +469,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/04/ActiveMQ/" rel="prev" title="ActiveMQ">
+                ActiveMQ <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -523,7 +554,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -545,7 +576,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -601,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBootApplication"><span class="nav-number">1.</span> <span class="nav-text">@SpringBootApplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RestController"><span class="nav-number">2.</span> <span class="nav-text">@RestController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#值的格式"><span class="nav-number">3.1.</span> <span class="nav-text">值的格式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBootApplication"><span class="nav-number">1.</span> <span class="nav-text">@SpringBootApplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RestController"><span class="nav-number">2.</span> <span class="nav-text">@RestController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#值的格式"><span class="nav-number">3.1.</span> <span class="nav-text">值的格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConfigurationProperties"><span class="nav-number">4.</span> <span class="nav-text">@ConfigurationProperties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConfigurationProperties-1"><span class="nav-number">4.1.</span> <span class="nav-text">@ConfigurationProperties</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -635,7 +666,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7.6k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 
