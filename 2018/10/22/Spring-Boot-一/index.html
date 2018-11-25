@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="一只小喵喵的博客">
 <meta property="og:description" content="@SpringBootApplication上一节写HelloWorldDemo时主程序类被修饰了一个@SpringBootApplication，【顾名思义-SpringBoot应用注解】标注在某各类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类的main方法来启动SpringBoot应用，是一个组合注解。 这个组合注解中包含Spring里的@Configur">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-22T09:30:37.874Z">
+<meta property="og:updated_time" content="2018-11-04T09:41:03.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot(一)">
 <meta name="twitter:description" content="@SpringBootApplication上一节写HelloWorldDemo时主程序类被修饰了一个@SpringBootApplication，【顾名思义-SpringBoot应用注解】标注在某各类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类的main方法来启动SpringBoot应用，是一个组合注解。 这个组合注解中包含Spring里的@Configur">
@@ -348,7 +348,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  653 字
+                  674 字
                 </span>
               
 
@@ -403,9 +403,8 @@
 <pre><code>pets:
  - cat
  - dog
-</code></pre><p>数组的行内写法：</p>
-<pre><code>pets: [dog,cat]
-</code></pre><h2 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h2><p>在配置文件中写好值后，如何获取参数？</p>
+</code></pre><p>数组的行内写法：<br>​<br>    pets: [dog,cat]</p>
+<h2 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h2><p>在配置文件中写好值后，如何获取参数？</p>
 <h3 id="ConfigurationProperties-1"><a href="#ConfigurationProperties-1" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>最常见的方法有将对象以映射的方式，将配置信息封装成一个类，创建一个class，在类上修饰：<strong>@Component</strong> 和 <strong>@ConfigurationProperties(prefix=”xxx”)</strong>,前者是将类变成一个JavaBean，后者表示前缀为xxx的配置信息被绑定</p>
 <p>我们可以导入<strong>配置文件处理器</strong>，写配置文件时会有相应包下bean的自动提示：</p>
 <pre><code>&lt;dependency&gt;
@@ -428,6 +427,8 @@ public class Person {
     - miao
     - wang
 </code></pre><p>如果是properties文件要将文件编码改为ASCII码，否则会出现乱码，设置步骤为：Settings-File Encodings-√Transparent native-to-ascii conversion</p>
+<h2 id="Value"><a href="#Value" class="headerlink" title="@Value"></a>@Value</h2><p>同Spring一样@Value(“${xxx}”)</p>
+<p>其中引号中可以用EL表达式表示#{xxx}</p>
 
       
     </div>
@@ -554,7 +555,7 @@ public class Person {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -576,7 +577,7 @@ public class Person {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -632,7 +633,7 @@ public class Person {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBootApplication"><span class="nav-number">1.</span> <span class="nav-text">@SpringBootApplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RestController"><span class="nav-number">2.</span> <span class="nav-text">@RestController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#值的格式"><span class="nav-number">3.1.</span> <span class="nav-text">值的格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConfigurationProperties"><span class="nav-number">4.</span> <span class="nav-text">@ConfigurationProperties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConfigurationProperties-1"><span class="nav-number">4.1.</span> <span class="nav-text">@ConfigurationProperties</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBootApplication"><span class="nav-number">1.</span> <span class="nav-text">@SpringBootApplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RestController"><span class="nav-number">2.</span> <span class="nav-text">@RestController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">3.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#值的格式"><span class="nav-number">3.1.</span> <span class="nav-text">值的格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConfigurationProperties"><span class="nav-number">4.</span> <span class="nav-text">@ConfigurationProperties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ConfigurationProperties-1"><span class="nav-number">4.1.</span> <span class="nav-text">@ConfigurationProperties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Value"><span class="nav-number">5.</span> <span class="nav-text">@Value</span></a></li></ol></div>
             
 
           </div>
@@ -666,7 +667,7 @@ public class Person {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.1k</span>
+    <span title="Site words total count">15.4k</span>
   
 </div>
 
