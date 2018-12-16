@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="一只小喵喵的博客">
 <meta property="og:description" content="安装与客户端的使用：https://blog.csdn.net/qq_35038153/article/details/79675728 其他参考链接：https://www.jianshu.com/p/7bf5dc61ca06/ https://blog.csdn.net/w501631338/article/details/73555908 Redis五大类型:字符串（String）、哈希/散">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-04T09:21:41.726Z">
+<meta property="og:updated_time" content="2018-12-16T02:51:06.290Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis入门与springboot集成">
 <meta name="twitter:description" content="安装与客户端的使用：https://blog.csdn.net/qq_35038153/article/details/79675728 其他参考链接：https://www.jianshu.com/p/7bf5dc61ca06/ https://blog.csdn.net/w501631338/article/details/73555908 Redis五大类型:字符串（String）、哈希/散">
@@ -326,7 +326,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.5k 字
+                  3.1k 字
                 </span>
               
 
@@ -342,7 +342,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  14 min
+                  12 min
                 </span>
               
             </div>
@@ -816,34 +816,15 @@
 </tbody>
 </table>
 <h3 id="String…与String-的区别"><a href="#String…与String-的区别" class="headerlink" title="String…与String[]的区别"></a>String…与String[]的区别</h3><p>类型后面三个点(String…)，是从Java 5开始，Java语言对方法参数支持一种新写法，叫可变长度参数列表，其语法就是类型后跟 <strong>…</strong>，表示此处接受的参数为<strong>0到多个</strong>Object类型的对象，或者是一个Object[]。所以如果你有了xxx(String… strs)就不能再有xxx(String[])，三个点的写法包含了第二种。</p>
-<h3 id="SpringBoot集成Activemq"><a href="#SpringBoot集成Activemq" class="headerlink" title="SpringBoot集成Activemq"></a>SpringBoot集成Activemq</h3><p>即JMS在Springboot中的应用</p>
-<p>[<a href="https://blog.csdn.net/Ouyzc/article/details/79756574" target="_blank" rel="noopener">https://blog.csdn.net/Ouyzc/article/details/79756574</a></p>
-<p>下面按照上面这个链接中的代码进行分析：</p>
-<p><strong>生产者：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 1生产者发送消息(发送信息到队列)P2P</span></span><br><span class="line"><span class="comment">	 * 根据实例化Destination目的地参数的类型的对象决定是点对点队列的形式，还是广播的形式</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Scheduled</span>(fixedRate = <span class="number">5000</span>)</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">queueSend</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	<span class="comment">//定义一个目的地（队列类型）</span></span><br><span class="line">	Destination queue = <span class="keyword">new</span> ActiveMQQueue(<span class="string">"mytest.queue"</span>);  </span><br><span class="line">	jmsTemplate.convertAndSend(queue, <span class="string">"myname is Oyzc"</span>);</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 2生产者发送消息(发送信息到话题)Pub</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Scheduled</span>(fixedRate = <span class="number">5000</span>)</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">topicSend</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	<span class="comment">//定义一个目的地（队列类型）</span></span><br><span class="line">	Destination topic = <span class="keyword">new</span> ActiveMQTopic(<span class="string">"mytest.topic"</span>); </span><br><span class="line">	jmsTemplate.convertAndSend(topic, <span class="string">"myname is Oyzc"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 3生产者发送出去消息之后，可以马上监听指定消费者的反馈信息</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> text</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="meta">@JmsListener</span>(destination=<span class="string">"out.queue"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">consumerMessage</span><span class="params">(String text)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"从out.queue队列收到的回复报文为:"</span>+text);	</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>消费者生产说明：</p>
-<p>//P2P创建队列，参数为队列名</p>
-<p>Destination queue = new ==ActiveMQQueue==(“mytest.queue”);</p>
-<p>//Pub定义topic，参数为topic名称</p>
-<p>Destination topic = new ==ActiveMQTopic==(“mytest.topic”); </p>
-<p>//jms发送队列/话题信息，第一个参数为队列/topic，第二个参数为发送的内容，可以是字符串或实体或json</p>
-<p>==jmsTemplate.convertAndSend(topic, “myname is Oyzc”);==</p>
-<p><strong>消费者：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用JmsListener配置消费者监听的队列，其中text是接收到的消息</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 消费者接收信息1(接收队列为mytest.queue的信息，并马上回复信息到out.queue队列中)</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="comment">// 使用JmsListener配置消费者监听的队列，其中text是接收到的消息  </span></span><br><span class="line">    <span class="meta">@JmsListener</span>(destination = <span class="string">"mytest.queue"</span>) </span><br><span class="line">	<span class="meta">@SendTo</span>(<span class="string">"out.queue"</span>)  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">receiveQueue1</span><span class="params">(String text)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"消费者1收到目的地为mytest.queue发来的信息"</span>+text);	</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"mytest.queue接收到你的信息了"</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>消费者说明：</p>
-<p>//@JmsListener开启监听，接受名为”mytest.queue”的队列/话题信息</p>
-<p>@JmsListener(destination = “mytest.queue”) </p>
-<p>//返回给生产者的队列</p>
-<p>@SendTo(“out.queue”)  </p>
-<p>在队列和话题同时存在的情况下，Jms默认支持队列，解决方式：</p>
-<p>在配置文件中添加 <strong>spring.jms.pub-sub-domain=true</strong>，使得队列和话题同时发送成功，但消费者只接受topic。</p>
-<p>正确解决方式：</p>
-<p>① Jms配置类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableJms</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JmsFactoryConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;activemq.ClientId&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String ClientId;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> JmsListenerContainerFactory&lt;?&gt; topicListenerFactory(ConnectionFactory connectionFactory) &#123;</span><br><span class="line">        DefaultJmsListenerContainerFactory factory = <span class="keyword">new</span> DefaultJmsListenerContainerFactory();</span><br><span class="line">        <span class="comment">//订阅发布</span></span><br><span class="line">        factory.setPubSubDomain(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">//消息持久化</span></span><br><span class="line">        factory.setSubscriptionDurable(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">//链接超时</span></span><br><span class="line">        factory.setReceiveTimeout(<span class="number">1000L</span>);</span><br><span class="line">        <span class="comment">//接收者id</span></span><br><span class="line">        factory.setClientId(ClientId);</span><br><span class="line">        factory.setConnectionFactory(connectionFactory);</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> JmsListenerContainerFactory&lt;?&gt; queueListenerFactory(ConnectionFactory connectionFactory) &#123;</span><br><span class="line">        DefaultJmsListenerContainerFactory factory = <span class="keyword">new</span> DefaultJmsListenerContainerFactory();</span><br><span class="line">        <span class="comment">//队列</span></span><br><span class="line">        factory.setPubSubDomain(<span class="keyword">false</span>);</span><br><span class="line">        factory.setConnectionFactory(connectionFactory);</span><br><span class="line">        <span class="keyword">return</span> factory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>修改消费者代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JmsListener</span>(destination = <span class="string">"$&#123;activemq.topic&#125;"</span> , containerFactory = <span class="string">"topicListenerFactory"</span>)</span><br></pre></td></tr></table></figure>
-<p>//使监听器处理话题/队列信息</p>
-<p>containerFactory = “topicListenerFactory/queueListenerFactory”</p>
+<hr>
+<p>2018/12/11更新</p>
+<h2 id="spring-data-redis"><a href="#spring-data-redis" class="headerlink" title="spring-data-redis"></a>spring-data-redis</h2><p>​    上面介绍了StingRedisTemplate的一些基本方法，上周末喜提一个新的项目，(<em>^▽^</em>) 项目比之前的大，功能很多，而且创始者还不爱打注释！这真的让我非常头疼</p>
+<p>​    好了回归主题，我看到代码里有一段</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> BoundHashOperations&lt;String, Object, Object&gt; <span class="title">hashOps</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> stringRedisTemplate.boundHashOps(<span class="string">"sutSub"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    看到StringRedisTemplate有些熟悉，刚入职的时候学了，是Redis的String数据结构，boundHashOps()没见过啊，这其实是一个RedisTemplate的方法，而StringRedisTemplate继承自它，所以告诉我他与get()的区别？ </p>
+<p>​    好像只是为了简化opsForValue()一步，好吧似乎真的只是这样而已，spring-data-redis提供了对key的“bound”便捷化API，为啥要用bound这个名字呢emmm… 可以通过bound封装指定的key操作redis里的数据，有</p>
+<p>BoundValueOperations<br>BoundSetOperations<br>BoundListOperations<br>BoundSetOperations<br>BoundHashOperations</p>
+<p>注意，这个spring-data-redis和put普通的spring-redis有一小点区别，jar包名字的区别…s一个叫spring-boot-data-redis，一个叫spring-boot-start-redis，都是基于Jedis的，所以其实没区别。</p>
 
       
     </div>
@@ -970,7 +951,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -992,7 +973,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1048,7 +1029,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#redisTemplate"><span class="nav-number">1.</span> <span class="nav-text">redisTemplate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StringRedisTemplate（Redis的String数据结构）"><span class="nav-number">2.</span> <span class="nav-text">StringRedisTemplate（Redis的String数据结构）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#String"><span class="nav-number">3.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash"><span class="nav-number">4.</span> <span class="nav-text">Hash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List"><span class="nav-number">5.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set"><span class="nav-number">6.</span> <span class="nav-text">Set</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String…与String-的区别"><span class="nav-number"></span> <span class="nav-text">String…与String[]的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot集成Activemq"><span class="nav-number"></span> <span class="nav-text">SpringBoot集成Activemq</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#redisTemplate"><span class="nav-number">1.</span> <span class="nav-text">redisTemplate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StringRedisTemplate（Redis的String数据结构）"><span class="nav-number">2.</span> <span class="nav-text">StringRedisTemplate（Redis的String数据结构）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#String"><span class="nav-number">3.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash"><span class="nav-number">4.</span> <span class="nav-text">Hash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List"><span class="nav-number">5.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set"><span class="nav-number">6.</span> <span class="nav-text">Set</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String…与String-的区别"><span class="nav-number"></span> <span class="nav-text">String…与String[]的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring-data-redis"><span class="nav-number"></span> <span class="nav-text">spring-data-redis</span></a></div>
             
 
           </div>
@@ -1082,7 +1063,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.4k</span>
+    <span title="Site words total count">22.4k</span>
   
 </div>
 

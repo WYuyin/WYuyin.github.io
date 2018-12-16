@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="json型字符串取值12345public String getMsg(String msg)&amp;#123;        JSONObject object = JSON.parseObject(msg);        String resultMsg = object.getString(&quot;data&quot;);        return resultMsg;    &amp;#125;">
+<meta name="description" content="json型字符串取值12345public String getMsg(String msg)&amp;#123;        JSONObject object = JSON.parseObject(msg);        String resultMsg = object.getString(&quot;data&quot;);        return resultMsg;    &amp;#125; Gson​">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="json型字符串取值">
 <meta property="og:url" content="http://yoursite.com/2018/11/25/json型字符串取值/index.html">
 <meta property="og:site_name" content="一只小喵喵的博客">
-<meta property="og:description" content="json型字符串取值12345public String getMsg(String msg)&amp;#123;        JSONObject object = JSON.parseObject(msg);        String resultMsg = object.getString(&quot;data&quot;);        return resultMsg;    &amp;#125;">
+<meta property="og:description" content="json型字符串取值12345public String getMsg(String msg)&amp;#123;        JSONObject object = JSON.parseObject(msg);        String resultMsg = object.getString(&quot;data&quot;);        return resultMsg;    &amp;#125; Gson​">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-25T02:48:37.266Z">
+<meta property="og:updated_time" content="2018-12-16T03:03:55.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="json型字符串取值">
-<meta name="twitter:description" content="json型字符串取值12345public String getMsg(String msg)&amp;#123;        JSONObject object = JSON.parseObject(msg);        String resultMsg = object.getString(&quot;data&quot;);        return resultMsg;    &amp;#125;">
+<meta name="twitter:description" content="json型字符串取值12345public String getMsg(String msg)&amp;#123;        JSONObject object = JSON.parseObject(msg);        String resultMsg = object.getString(&quot;data&quot;);        return resultMsg;    &amp;#125; Gson​">
 
 
 
@@ -326,7 +326,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  25 字
+                  874 字
                 </span>
               
 
@@ -342,7 +342,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 min
+                  4 min
                 </span>
               
             </div>
@@ -364,6 +364,21 @@
 
       
         <h2 id="json型字符串取值"><a href="#json型字符串取值" class="headerlink" title="json型字符串取值"></a>json型字符串取值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getMsg</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">        JSONObject object = JSON.parseObject(msg);</span><br><span class="line">        String resultMsg = object.getString(<span class="string">"data"</span>);</span><br><span class="line">        <span class="keyword">return</span> resultMsg;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Gson"><a href="#Gson" class="headerlink" title="Gson"></a>Gson</h2><p>​    都8012年了我还用这么原始的方法嘛，如果遇到了bean怎么办，有更好的工具：Gson和Jackson，这里只讲Gson。Gson提供了<code>fromJson()</code> 和<code>toJson()</code> 两个直接用于解析和生成的方法，前者实现<strong>反序列化</strong>，后者实现了<strong>序列化</strong>。</p>
+<p>Serialization:序列化，使Java对象到Json字符串的过程。</p>
+<p>Deserialization：反序列化，字符串转换成Java对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//最简单的用法</span></span><br><span class="line"><span class="comment">//toJson：将对象转换为json字符串</span></span><br><span class="line">String jsonstr = <span class="keyword">new</span> Gson().toJson(user, User.class);</span><br><span class="line"><span class="comment">//fromJson：将就送字符串转化为对象</span></span><br><span class="line">User user = <span class="keyword">new</span> Gson().fromJson(jsonstr, User.class);</span><br></pre></td></tr></table></figure>
+<p>​    但序列化和反序列化的过程中，期望的驼峰格式会被转成实际的下划线格式，解决这个问题可以用@SerializedName注解，在实体类定义属性的时候加：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SerializedName</span>(<span class="string">"email_address"</span>)</span><br><span class="line"><span class="keyword">public</span> String emailAddress;</span><br></pre></td></tr></table></figure>
+<p>​    如果接收的格式不止两种，还可加alternate参数，可以看做是给属性加多个“别称”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SerializedName</span>(value = <span class="string">"emailAddress"</span>, alternate = &#123;<span class="string">"email"</span>, <span class="string">"email_address"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> String emailAddress;</span><br></pre></td></tr></table></figure>
+<p>​    除了Object，基本数据类型的json生成与解析也是可以的，只是意义不大。另外还可对List、Map、Set等，一一来研究：</p>
+<p>​    <strong>温馨提示：如若需要频繁操作，直接创一个gson对象，以免不必要的资源浪费，但我比较懒，所以下面写的都是new Gson().balabala，后面我会总结一个工具类，这里就当个demo看看</strong></p>
+<h3 id="List转化"><a href="#List转化" class="headerlink" title="List转化"></a>List转化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这是一个带泛型的list，我们想把它转为json</span></span><br><span class="line">List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;User&gt;();</span><br><span class="line">list.add(user1);</span><br><span class="line">list.add(user2);</span><br><span class="line">list.add(user3);</span><br><span class="line"></span><br><span class="line">String str = <span class="keyword">new</span> Gson().toJson(list);</span><br><span class="line"><span class="comment">//转回泛型list有点复杂，要用TypeToken</span></span><br><span class="line">List&lt;User&gt; resultlist = <span class="keyword">new</span> Gson().fromJson(str,<span class="keyword">new</span> TypeToken&lt;List&lt;User&gt;&gt;() &#123;&#125;.getType());</span><br></pre></td></tr></table></figure>
+<h3 id="Map转化"><a href="#Map转化" class="headerlink" title="Map转化"></a>Map转化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这是一个普通的Map，我们把key定义为string，value定义为一个Object</span></span><br><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.put(<span class="string">"a"</span>,user1);</span><br><span class="line">map.put(<span class="string">"b"</span>,user2);</span><br><span class="line"><span class="comment">//把map转为json</span></span><br><span class="line">String str = <span class="keyword">new</span> Gson().toJson(map);</span><br><span class="line"><span class="comment">//换回map也要用TypeToken</span></span><br><span class="line">Map&lt;String, Object&gt; resultmap = <span class="keyword">new</span> Gson().fromJson(str,<span class="keyword">new</span> TypeToken&lt;Map&lt;String,Object&gt;&gt;() &#123;&#125;.getType());</span><br></pre></td></tr></table></figure>
+<h3 id="Set转化"><a href="#Set转化" class="headerlink" title="Set转化"></a>Set转化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这是一个简单的Set，里面存的是String</span></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">set.add(<span class="string">"bala"</span>);</span><br><span class="line">set.add(<span class="string">"balala"</span>);</span><br><span class="line"><span class="comment">//把set转为json</span></span><br><span class="line">String str = <span class="keyword">new</span> Gson().toJson(set);</span><br><span class="line"><span class="comment">//换回set</span></span><br><span class="line">Set&lt;String&gt; resultset = <span class="keyword">new</span> Gson().fromJson(str,<span class="keyword">new</span> TypeToken&lt;Set&lt;String&gt;&gt;() &#123;&#125;.getType());</span><br></pre></td></tr></table></figure>
+<h3 id="GsonUtil"><a href="#GsonUtil" class="headerlink" title="GsonUtil"></a>GsonUtil</h3><p>吼啦，贴一个自己用的GsonUtil，只写了一个转化list的，因为我只用到了这个，以后用到了再加</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.google.gson.Gson;</span><br><span class="line"><span class="keyword">import</span> com.google.gson.JsonObject;</span><br><span class="line"><span class="keyword">import</span> com.google.gson.reflect.TypeToken;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@program</span>: UnifiedBgManage</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: Gson-处理json字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: WYuyin</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span>: 2018-12-13 11:19</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GsonUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(GsonUtil.class);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Gson gson = <span class="keyword">new</span> Gson();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toJson</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> gson.toJson(o);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toJson</span><span class="params">(Object o , Type type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> gson.toJson(o,type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">toObject</span><span class="params">(String jsonstr , Type type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> gson.fromJson(jsonstr,type);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Description</span>: 由于比较懒，直接把jsonstr里的值获取出来</span></span><br><span class="line"><span class="comment">     * 例："&#123;\"data\":[],\"desc\":\"1000\",\"pageNum\":1,\"status\":\"success\",\"total\":0&#125;"</span></span><br><span class="line"><span class="comment">     *  -&gt; "[]"</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Param</span>: [jsonstr, title]  title:key 比如"data","status"...</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span>: java.lang.String </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Author</span>: WYuyin</span></span><br><span class="line"><span class="comment">    */</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getData</span><span class="params">(String jsonstr , String title)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        JsonObject jsonObject = gson.fromJson(jsonstr,JsonObject.class);</span><br><span class="line">        String resultstr = <span class="string">""</span> + jsonObject.get(title);</span><br><span class="line">        <span class="keyword">return</span> resultstr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Description</span>: 将数组字符串转化为list</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Param</span>: [liststr] </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span>: java.util.List&lt;T&gt; </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Author</span>: WYuyin</span></span><br><span class="line"><span class="comment">    */</span> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">toList</span><span class="params">(String liststr)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        List&lt;T&gt; resultlist = gson.fromJson(liststr, <span class="keyword">new</span> TypeToken&lt;List&lt;T&gt;&gt;() &#123;&#125;.getType());</span><br><span class="line">        <span class="keyword">return</span> resultlist;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -403,6 +418,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/16/我之所以做程序员/" rel="prev" title="我之所以做程序员">
+                我之所以做程序员 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -484,7 +503,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -506,7 +525,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -562,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#json型字符串取值"><span class="nav-number">1.</span> <span class="nav-text">json型字符串取值</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#json型字符串取值"><span class="nav-number">1.</span> <span class="nav-text">json型字符串取值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gson"><span class="nav-number">2.</span> <span class="nav-text">Gson</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List转化"><span class="nav-number">2.1.</span> <span class="nav-text">List转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map转化"><span class="nav-number">2.2.</span> <span class="nav-text">Map转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set转化"><span class="nav-number">2.3.</span> <span class="nav-text">Set转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GsonUtil"><span class="nav-number">2.4.</span> <span class="nav-text">GsonUtil</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -596,7 +615,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.4k</span>
+    <span title="Site words total count">22.4k</span>
   
 </div>
 
