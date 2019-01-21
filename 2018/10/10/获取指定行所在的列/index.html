@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="一只小喵喵的博客">
 <meta property="og:description" content="每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。 html： &amp;lt;table class=&amp;quot;datatbl&amp;quot;&amp;gt;     &amp;lt;thead&amp;gt;         &amp;lt;tr&amp;gt;             &amp;lt;td&amp;gt;xxx&amp;lt;/td&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-10T08:39:10.305Z">
+<meta property="og:updated_time" content="2019-01-21T09:31:39.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="获取指定行所在的列">
 <meta name="twitter:description" content="每次前端的问题都能把我整好久，看来当时网页这门课没学好，今天遇到的问题是不知道如何获取table下某一列的所有数值，校验后并对它所在的行的其他兄弟节点进行操作。 html： &amp;lt;table class=&amp;quot;datatbl&amp;quot;&amp;gt;     &amp;lt;thead&amp;gt;         &amp;lt;tr&amp;gt;             &amp;lt;td&amp;gt;xxx&amp;lt;/td&amp;gt;">
@@ -305,6 +305,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -312,7 +334,23 @@
 
           
           
+             <span id="/2018/10/10/获取指定行所在的列/" class="leancloud_visitors" data-flag-title="获取指定行所在的列">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
@@ -326,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  354 字
+                  348 字
                 </span>
               
 
@@ -379,11 +417,8 @@
         &lt;/s:iterator&gt;
     &lt;/tbody&gt;
 &lt;/table&gt;
-</code></pre><p>思路：为了操作步骤方便，我直接将要获取的那一列加上class，本来想从table一步步往下找，但是不知道怎么.childern不太会用，索性直接根据class找所有的元素。</p>
-<pre><code>$(&quot;.compareFkStatus&quot;).each(function(){
-    console.log($(this).html());
-});
-</code></pre><p>然后获取此td所在的tr，也就是其父节点</p>
+</code></pre><p>思路：为了操作步骤方便，我直接将要获取的那一列加上class，本来想从table一步步往下找，但是不知道怎么.childern不太会用，索性直接根据class找所有的元素。<br>​<br>    $(“.compareFkStatus”).each(function(){<br>        console.log($(this).html());<br>    });</p>
+<p>然后获取此td所在的tr，也就是其父节点</p>
 <pre><code>$(&quot;.compareFkStatus&quot;).each(function(){
     console.log($(this).html());
     var parent = $(this).parent();
@@ -391,11 +426,8 @@
     console.log(&quot;a:&quot;+a);
 });
 </code></pre><p>这里parent就是所在列，a就是所在列。</p>
-<p>总结一下，也就是子元素与父元素的获取</p>
-<pre><code>$(子元素).parent() #获取父元素
-$(父元素).children(selector) #获取子元素
-$(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的意思为xxx下的class为a的元素
-</code></pre>
+<p>总结一下，也就是子元素与父元素的获取<br>​<br>    $(子元素).parent() #获取父元素<br>    $(父元素).children(selector) #获取子元素<br>    $(xxx).find(“[class=’a’]”)    #与上面相似，此处的意思为xxx下的class为a的元素</p>
+
       
     </div>
     
@@ -510,7 +542,7 @@ $(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -520,10 +552,10 @@ $(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的�
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -532,7 +564,7 @@ $(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -592,7 +624,7 @@ $(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -606,7 +638,7 @@ $(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.4k</span>
+    <span title="Site words total count">28k</span>
   
 </div>
 
@@ -619,6 +651,26 @@ $(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的�
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
@@ -797,6 +849,113 @@ $(xxx).find(&quot;[class=&apos;a&apos;]&quot;)    #与上面相似，此处的�
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hKLsKDrV2s4IlesdGgbIKSs5-gzGzoHsz", "Qkn12z1iSOL910dkB6w4R2uw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="一只小喵喵的博客">
 <meta property="og:description" content="参考链接：https://blog.csdn.net/vbirdbest/article/details/72763048 ehcache与redis比较 ehcache通常和redis一块使用 ehcache直接在jvm虚拟机中缓存，速度快，效率高；但是缓存共享麻烦，集群分布式应用不方便。 redis是通过socket访问到缓存服务，效率比ecache低，比数据库要快很多， 处理集群和分布式缓存">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-04T09:16:11.908Z">
+<meta property="og:updated_time" content="2019-01-21T09:27:09.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ehcache">
 <meta name="twitter:description" content="参考链接：https://blog.csdn.net/vbirdbest/article/details/72763048 ehcache与redis比较 ehcache通常和redis一块使用 ehcache直接在jvm虚拟机中缓存，速度快，效率高；但是缓存共享麻烦，集群分布式应用不方便。 redis是通过socket访问到缓存服务，效率比ecache低，比数据库要快很多， 处理集群和分布式缓存">
@@ -305,6 +305,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/缓存/" itemprop="url" rel="index">
+                    <span itemprop="name">缓存</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -312,7 +334,23 @@
 
           
           
+             <span id="/2018/11/04/ehcache/" class="leancloud_visitors" data-flag-title="ehcache">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
@@ -373,7 +411,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--EhCache--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.ehcache<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ehcache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>2.增加配置，可以再resource文件夹下增加</p>
 <p>默认情况下Ehcache会自动加载classpath根目录下名为ehcache.xml文件，也可以将该文件放到其他地方在使用时指定文件的位置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">ehcache</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:noNamespaceSchemaLocation</span>=<span class="string">"http://ehcache.org/ehcache.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 磁盘缓存位置 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">diskStore</span> <span class="attr">path</span>=<span class="string">"java.io.tmpdir/ehcache"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 默认缓存 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defaultCache</span></span></span><br><span class="line"><span class="tag">          <span class="attr">maxEntriesLocalHeap</span>=<span class="string">"10000"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">eternal</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">timeToIdleSeconds</span>=<span class="string">"120"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">timeToLiveSeconds</span>=<span class="string">"120"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">maxEntriesLocalDisk</span>=<span class="string">"10000000"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">diskExpiryThreadIntervalSeconds</span>=<span class="string">"120"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">persistence</span> <span class="attr">strategy</span>=<span class="string">"localTempSwap"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">defaultCache</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- helloworld缓存 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cache</span> <span class="attr">name</span>=<span class="string">"HelloWorldCache"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">maxElementsInMemory</span>=<span class="string">"1000"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">eternal</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">timeToIdleSeconds</span>=<span class="string">"5"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">timeToLiveSeconds</span>=<span class="string">"5"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">overflowToDisk</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">ehcache</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:noNamespaceSchemaLocation</span>=<span class="string">"http://ehcache.org/ehcache.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 磁盘缓存位置 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">diskStore</span> <span class="attr">path</span>=<span class="string">"java.io.tmpdir/ehcache"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 默认缓存 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">defaultCache</span></span></span><br><span class="line"><span class="tag">          <span class="attr">maxEntriesLocalHeap</span>=<span class="string">"10000"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">eternal</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">timeToIdleSeconds</span>=<span class="string">"120"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">timeToLiveSeconds</span>=<span class="string">"120"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">maxEntriesLocalDisk</span>=<span class="string">"10000000"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">diskExpiryThreadIntervalSeconds</span>=<span class="string">"120"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">persistence</span> <span class="attr">strategy</span>=<span class="string">"localTempSwap"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">defaultCache</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- helloworld缓存 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cache</span> <span class="attr">name</span>=<span class="string">"HelloWorldCache"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">maxElementsInMemory</span>=<span class="string">"1000"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">eternal</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">timeToIdleSeconds</span>=<span class="string">"5"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">timeToLiveSeconds</span>=<span class="string">"5"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">overflowToDisk</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">memoryStoreEvictionPolicy</span>=<span class="string">"LRU"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>也可以直接写在文件里，Ehcacheconfig.java:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EhCacheConfig</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span>(name = <span class="string">"ehCacheManager"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CacheManager <span class="title">cacheManager</span><span class="params">()</span></span>&#123;</span><br><span class="line">        CacheConfiguration cacheConfig = <span class="keyword">new</span> CacheConfiguration();</span><br><span class="line">        cacheConfig.setName(<span class="string">"course"</span>);</span><br><span class="line">        cacheConfig.setMemoryStoreEvictionPolicy(<span class="string">"LRU"</span>);</span><br><span class="line">        cacheConfig.setMaxEntriesLocalHeap(<span class="number">1000</span>);</span><br><span class="line">        cacheConfig.setEternal(<span class="keyword">true</span>);</span><br><span class="line">        net.sf.ehcache.config.Configuration config = <span class="keyword">new</span> net.sf.ehcache.config.Configuration();</span><br><span class="line">        config.addCache(cacheConfig);</span><br><span class="line">        CacheManager cacheManager = CacheManager.newInstance(config);</span><br><span class="line">        <span class="keyword">return</span> cacheManager;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3.这里对cache做简单的封装：</p>
@@ -548,7 +586,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -558,10 +596,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -570,7 +608,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -646,7 +684,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -660,7 +698,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.4k</span>
+    <span title="Site words total count">28k</span>
   
 </div>
 
@@ -673,6 +711,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
@@ -851,6 +909,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hKLsKDrV2s4IlesdGgbIKSs5-gzGzoHsz", "Qkn12z1iSOL910dkB6w4R2uw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="一只小喵喵的博客">
 <meta property="og:description" content="json型字符串取值12345public String getMsg(String msg)&amp;#123;        JSONObject object = JSON.parseObject(msg);        String resultMsg = object.getString(&quot;data&quot;);        return resultMsg;    &amp;#125; Gson​">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-16T03:03:55.927Z">
+<meta property="og:updated_time" content="2019-01-21T11:56:54.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="json型字符串取值">
 <meta name="twitter:description" content="json型字符串取值12345public String getMsg(String msg)&amp;#123;        JSONObject object = JSON.parseObject(msg);        String resultMsg = object.getString(&quot;data&quot;);        return resultMsg;    &amp;#125; Gson​">
@@ -305,6 +305,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/基础/" itemprop="url" rel="index">
+                    <span itemprop="name">基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -312,7 +334,23 @@
 
           
           
+             <span id="/2018/11/25/json型字符串取值/" class="leancloud_visitors" data-flag-title="json型字符串取值">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
           
 
           
@@ -326,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  874 字
+                  1.2k 字
                 </span>
               
 
@@ -342,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4 min
+                  5 min
                 </span>
               
             </div>
@@ -379,7 +417,11 @@
 <h3 id="Set转化"><a href="#Set转化" class="headerlink" title="Set转化"></a>Set转化</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这是一个简单的Set，里面存的是String</span></span><br><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">set.add(<span class="string">"bala"</span>);</span><br><span class="line">set.add(<span class="string">"balala"</span>);</span><br><span class="line"><span class="comment">//把set转为json</span></span><br><span class="line">String str = <span class="keyword">new</span> Gson().toJson(set);</span><br><span class="line"><span class="comment">//换回set</span></span><br><span class="line">Set&lt;String&gt; resultset = <span class="keyword">new</span> Gson().fromJson(str,<span class="keyword">new</span> TypeToken&lt;Set&lt;String&gt;&gt;() &#123;&#125;.getType());</span><br></pre></td></tr></table></figure>
 <h3 id="GsonUtil"><a href="#GsonUtil" class="headerlink" title="GsonUtil"></a>GsonUtil</h3><p>吼啦，贴一个自己用的GsonUtil，只写了一个转化list的，因为我只用到了这个，以后用到了再加</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.google.gson.Gson;</span><br><span class="line"><span class="keyword">import</span> com.google.gson.JsonObject;</span><br><span class="line"><span class="keyword">import</span> com.google.gson.reflect.TypeToken;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Type;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@program</span>: UnifiedBgManage</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: Gson-处理json字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: WYuyin</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span>: 2018-12-13 11:19</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GsonUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(GsonUtil.class);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Gson gson = <span class="keyword">new</span> Gson();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toJson</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> gson.toJson(o);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toJson</span><span class="params">(Object o , Type type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> gson.toJson(o,type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">toObject</span><span class="params">(String jsonstr , Type type)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> gson.fromJson(jsonstr,type);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Description</span>: 由于比较懒，直接把jsonstr里的值获取出来</span></span><br><span class="line"><span class="comment">     * 例："&#123;\"data\":[],\"desc\":\"1000\",\"pageNum\":1,\"status\":\"success\",\"total\":0&#125;"</span></span><br><span class="line"><span class="comment">     *  -&gt; "[]"</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Param</span>: [jsonstr, title]  title:key 比如"data","status"...</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span>: java.lang.String </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Author</span>: WYuyin</span></span><br><span class="line"><span class="comment">    */</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getData</span><span class="params">(String jsonstr , String title)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        JsonObject jsonObject = gson.fromJson(jsonstr,JsonObject.class);</span><br><span class="line">        String resultstr = <span class="string">""</span> + jsonObject.get(title);</span><br><span class="line">        <span class="keyword">return</span> resultstr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Description</span>: 将数组字符串转化为list</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Param</span>: [liststr] </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span>: java.util.List&lt;T&gt; </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@Author</span>: WYuyin</span></span><br><span class="line"><span class="comment">    */</span> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">toList</span><span class="params">(String liststr)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        List&lt;T&gt; resultlist = gson.fromJson(liststr, <span class="keyword">new</span> TypeToken&lt;List&lt;T&gt;&gt;() &#123;&#125;.getType());</span><br><span class="line">        <span class="keyword">return</span> resultlist;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>##Jackson</p>
+<p>大概一个月前整理了一个Gson的用法，但只会Gson怎么够呢，我得看得懂其他人的代码呀，嘿，事实上现在的我就是这样，不同的人给我他们的代码，让我加东西的时候我总要模仿他们的写法，比如有些人不爱写长注释，有些人用Gson而有些人用Jackson…</p>
+<p>为了把json数据映射到对象上，你需要：有一个包含你需要的属性值的实体类，类的属性名称与json中的key一一对应，若遇到大小写混乱或下划线的用<strong>@JsonProperty(“xxx”)</strong>标在属性上</p>
+<p>接下来，你可以包装一个jackson的工具类，主要用Jackson ObjectMapper对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JacksonJsonUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Jackson ObjectMapper对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">object2String</span><span class="params">(Object object)</span> <span class="keyword">throws</span> JsonProcessingException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> objectMapper.writeValueAsString(object);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">string2Object</span><span class="params">(String jsonString, Class&lt;T&gt; classType)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> objectMapper.readValue(jsonString, classType);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">string2List</span><span class="params">(String jsonString, Class&lt;T&gt; valueClassType)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> objectMapper.readValue(jsonString, objectMapper.getTypeFactory().constructParametricType(ArrayList.class, valueClassType));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -503,7 +545,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -513,10 +555,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -525,7 +567,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -601,7 +643,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -615,7 +657,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.4k</span>
+    <span title="Site words total count">28k</span>
   
 </div>
 
@@ -628,6 +670,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
@@ -806,6 +868,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hKLsKDrV2s4IlesdGgbIKSs5-gzGzoHsz", "Qkn12z1iSOL910dkB6w4R2uw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
