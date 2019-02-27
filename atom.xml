@@ -70,7 +70,7 @@
     <link href="http://yoursite.com/2019/01/21/kafka%E6%B5%85%E8%B0%88/"/>
     <id>http://yoursite.com/2019/01/21/kafka浅谈/</id>
     <published>2019-01-21T12:02:28.000Z</published>
-    <updated>2019-01-21T12:03:15.301Z</updated>
+    <updated>2019-02-27T12:10:57.890Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><p>因为我遇到了Kafka，就记录Kafka的机制吧，先要了解一些概念：</p><p>1.producer &amp; consumer<br>​    消息生产者与消费者<br>2.broker<br>​    kafka集群中包含的服务器，每个broker是一个节点，也可以看做是消费者系统中的一个kafka进程<br>3.topic &amp; partition<br>​    topic相当于消息的key，属于消息的类别，一个topic包含一个或多个partition<br>4.replica<br>​    partition的副本<br>5.<strong>Zookeeper</strong><br>​    管理producer，broker，consumer的动态加入与离开，要用kafka必须启用Zookeeper</p><h3 id="Kafka的高可用性"><a href="#Kafka的高可用性" class="headerlink" title="Kafka的高可用性"></a>Kafka的高可用性</h3><p>Kafka 0.8 以后，提供了 HA 机制，就是 replica（复制品） 副本机制，每个partition不止直接给一个broker，而会生成自己的多个replica副本，所有的replica会选举出一个leader出来，所有的生产和消费与leader打交道，其余的replica就是follower。</p><p>写的时候，leader会负责把数据都同步到follower上，Kafka 会均匀地将一个 partition 的所有 replica 分布在不同的机器上，这样才可以提高容错性。<br>这么搞，就有所谓的<strong>高可用性</strong>了，因为如果某个 broker 宕机了，没事儿，那个 broker上面的 partition 在其他机器上都有副本的，如果这上面有某个 partition 的 leader，那么此时会从 follower 中<strong>重新选举</strong>一个新的 leader 出来，大家继续读写那个新的 leader 即可。这就有所谓的高可用性了。</p><p><strong>写数据</strong>的时候，生产者就写 leader，然后 leader 将数据落地写本地磁盘，接着其他 follower 自己主动从 leader 来 pull 数据。一旦所有 follower 同步好数据了，就会发送 ack 给 leader，leader 收到所有 follower 的 ack 之后，就会返回写成功的消息给生产者。（当然，这只是其中一种模式，还可以适当调整这个行为）</p><p><strong>消费</strong>的时候，只会从 leader 去读，但是只有当一个消息已经被所有 follower 都同步成功返回 ack 的时候，这个消息才会被消费者读到。</p><h3 id="Kafka保证消息不被重复消费（保证消费的幂等性）"><a href="#Kafka保证消息不被重复消费（保证消费的幂等性）" class="headerlink" title="Kafka保证消息不被重复消费（保证消费的幂等性）"></a>Kafka保证消息不被重复消费（保证消费的幂等性）</h3><p>Kafka提供了两套consumer API，high-level API提供了更多的细节，offset能保证消息植被消费一次，每个消息被写的时候都有一个offset存在，代表消息的序号。当消费者消费了数据之后，每隔一段时间就会把自己消费过的消息的offset提交一下，若是要对系统做重启操作，就得冲上次消费到的offset来继续消费。</p><h3 id="Kafka保证消息可靠性（消息不会丢失）"><a href="#Kafka保证消息可靠性（消息不会丢失）" class="headerlink" title="Kafka保证消息可靠性（消息不会丢失）"></a>Kafka保证消息可靠性（消息不会丢失）</h3><p>既然有了offset，也知道offset会自动的刷给kafka，告诉它你已经消费了这些消息，但有一种情况可能是消费者虽自动提交了offset，但其实你刚准备处理这个消息，你还没来得及处理，自己就挂了，但此时kafka已经认为你消费过了。</p><p>那么可以关闭自动提交offset，当你认为处理完消息后再手动提交，但的确可能你处理完还没提交offset自己又挂了那就只能靠自己来保证了</p><p>文章中提到起码要设置下面四个参数：</p><ul><li>给 topic 设置 <code>replication.factor</code> 参数：这个值必须大于 1，要求每个 partition 必须有至少 2 个副本。</li><li>在 Kafka 服务端设置 <code>min.insync.replicas</code> 参数：这个值必须大于 1，这个是要求一个 leader 至少感知到有至少一个 follower 还跟自己保持联系，没掉队，这样才能确保 leader 挂了还有一个 follower 吧。</li><li>在 producer 端设置 <code>acks=all</code>：这个是要求每条数据，必须是<strong>写入所有 replica 之后，才能认为是写成功了</strong>。</li><li>在 producer 端设置 <code>retries=MAX</code>（很大很大很大的一个值，无限次重试的意思）：这个是<strong>要求一旦写入失败，就无限重试</strong>，卡在这里了。</li></ul>]]></content>
     
@@ -84,7 +84,7 @@
     
     </summary>
     
-      <category term="MQ" scheme="http://yoursite.com/categories/MQ/"/>
+      <category term="中间件" scheme="http://yoursite.com/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
     
     
       <category term="MQ" scheme="http://yoursite.com/tags/MQ/"/>
