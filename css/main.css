@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2913c7;
+  background: #de6696;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3151,7 +3151,7 @@ pre .javascript .function {
   background-color: rgba(255,255,255,0.7);
 }
 .sidebar-inner {
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(255,255,255,0.5);
 }
 .menu .menu-item a:hover {
   border-bottom-color: rgba(132,128,242,0);
@@ -3190,10 +3190,16 @@ blockquote {
   margin-top: -12px;
 }
 body {
-  background: url("https://cdna.artstation.com/p/assets/images/images/015/359/182/large/paperblue-net-sky-c-m.jpg?1548055876");
+  background: url("http://www.005.tv/uploads/allimg/190129/55-1Z129105G5526.jpg");
   background-repeat: no-repeat;
+  background-width: 100%;
+  background-height: 100%;
   background-attachment: fixed;
+  background-size: cover;
   background-position: 50% 50%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 p a {
   color: #fc6423;
@@ -3202,6 +3208,7 @@ p a {
   background: rgba(255,255,255,0.3);
 }
 .post-button .btn:hover {
-  background: linear-gradient(to top right, #86ffd3, #d2ffa5);
-  color: #afb2b2;
+  background-color: #a9c9ff;
+  background-image: linear-gradient(95deg, #a9c9ff 0%, #ffbbec 67%);
+  color: #4158d0;
 }
