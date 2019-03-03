@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一只小喵喵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="开这篇blog的来源是因为工作中真的遇到了很多大大小小的问题，平时有空我都会记录下来，但由于又不是很重要或者很难的东西，（一切都源于我菜才会有这些问题），不想为这些分别立一篇，但还是有记录的价值的！（记录了自己成长哈哈哈） 我会按照内容来做标题，也会order by desc，这篇的开始为19/2/13，所以一些小问题以后就不会立一篇博客了，只有当我觉得很重要的东西才会不放在这里面。 另外每一个b">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记bug簿（长期更新）">
+<meta property="og:url" content="http://yoursite.com/2019/03/03/记bug簿（长期更新）/index.html">
+<meta property="og:site_name" content="一只小喵喵的博客">
+<meta property="og:description" content="开这篇blog的来源是因为工作中真的遇到了很多大大小小的问题，平时有空我都会记录下来，但由于又不是很重要或者很难的东西，（一切都源于我菜才会有这些问题），不想为这些分别立一篇，但还是有记录的价值的！（记录了自己成长哈哈哈） 我会按照内容来做标题，也会order by desc，这篇的开始为19/2/13，所以一些小问题以后就不会立一篇博客了，只有当我觉得很重要的东西才会不放在这里面。 另外每一个b">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/03/03/记bug簿（长期更新）/111.png">
+<meta property="og:updated_time" content="2019-03-03T06:16:22.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记bug簿（长期更新）">
+<meta name="twitter:description" content="开这篇blog的来源是因为工作中真的遇到了很多大大小小的问题，平时有空我都会记录下来，但由于又不是很重要或者很难的东西，（一切都源于我菜才会有这些问题），不想为这些分别立一篇，但还是有记录的价值的！（记录了自己成长哈哈哈） 我会按照内容来做标题，也会order by desc，这篇的开始为19/2/13，所以一些小问题以后就不会立一篇博客了，只有当我觉得很重要的东西才会不放在这里面。 另外每一个b">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/03/记bug簿（长期更新）/111.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/03/记bug簿（长期更新）/"/>
+
+
+
+
+
+  <title>记bug簿（长期更新） | 一只小喵喵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一只小喵喵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-个人介绍">
+          <a href="/introduction/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bomb"></i> <br />
+            
+            个人介绍
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/记bug簿（长期更新）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wyy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只小喵喵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">记bug簿（长期更新）</h1>
+        
+
+        <div class="post-meta">
+		
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>置顶</font>
+            <span class="post-meta-divider">|</span>
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-03T10:30:57+08:00">
+                2019-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/03/03/记bug簿（长期更新）/" class="leancloud_visitors" data-flag-title="记bug簿（长期更新）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>开这篇blog的来源是因为工作中真的遇到了很多大大小小的问题，平时有空我都会记录下来，但由于又不是很重要或者很难的东西，（一切都源于我菜才会有这些问题），不想为这些分别立一篇，但还是有记录的价值的！（记录了自己成长哈哈哈）</p>
+<p>我会按照内容来做标题，也会order by desc，这篇的开始为19/2/13，所以一些小问题以后就不会立一篇博客了，只有当我觉得很重要的东西才会不放在这里面。</p>
+<p>另外每一个bug解决不可能完全不依赖搜索引擎，但是我会记录原文地址。</p>
+<h2 id="IDEA中WebApplication-Exploded与Archive区别"><a href="#IDEA中WebApplication-Exploded与Archive区别" class="headerlink" title="IDEA中WebApplication:Exploded与Archive区别"></a>IDEA中WebApplication:Exploded与Archive区别</h2><p>原文：<a href="https://blog.csdn.net/ydk888888/article/details/77247725" target="_blank" rel="noopener">https://blog.csdn.net/ydk888888/article/details/77247725 </a></p>
+<p>对这个问题的疑惑是当时有个同事交接给我项目时，用IDEA跑普通maven项目起不来，于是以为是artifacts配置的问题，设置的地方在IDEA右上角有个蓝色俄罗斯方块的文件夹-Project Settings-Artifacts，就产生了疑惑，WebApplication:Exploded和WebApplication:Archive有啥区别？</p>
+<p><img src="/2019/03/03/记bug簿（长期更新）/111.png"></p>
+<p>直接引用原博客的话：</p>
+<p>选项中有web application exploded，这个是以文件夹形式（War Exploded）发布项目，选择这个，发布项目时就会自动生成文件夹在指定的output directory,</p>
+<p>如果选web application archive，就是war包形式，每次都会重新打包全部的,将项目打成一个war包在指定位置；</p>
+<h2 id="git-Warning-detached-HEAD"><a href="#git-Warning-detached-HEAD" class="headerlink" title="git Warning detached HEAD"></a>git Warning detached HEAD</h2><p>原文：<a href="https://www.jianshu.com/p/ae4857d2f868" target="_blank" rel="noopener">https://www.jianshu.com/p/ae4857d2f868</a></p>
+<p>提交代码的时候遇到了Warning，没有贴原句，就拿这个原文中的复制过来，是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Warning: you are leaving 1 commit behind, not connected to</span><br><span class="line">any of your branches:</span><br><span class="line"></span><br><span class="line">  fef4501 interrationRecord page completed</span><br><span class="line"></span><br><span class="line">If you want to keep them by creating a new branch, this may be a good time</span><br><span class="line">to do so with:</span><br><span class="line"></span><br><span class="line"> git branch &lt;new-branch-name&gt; fef4501</span><br></pre></td></tr></table></figure>
+<p>原本应该上传到master分支，但commit出现了这个Warning导致没有成功，当时也没来得及看这段话，只看到git提交记录中自己的那个分支上右侧tag显示了一个黄色的感叹号，且无法push，就急忙着checkout了线上master看发现果然没有自己commit的那条，返回本地分支自己辛辛苦苦写了两天的代码就没了，突然愣住，找了其他大佬说应该是找不回来了，于是看到这个warning，找到这篇简书。</p>
+<p>按照步骤第一步输入,xxxx就是这个Warning里的版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$git branch temp xxxx</span><br></pre></td></tr></table></figure>
+<p>第二步切换工作分支并合并代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git merge temp</span><br></pre></td></tr></table></figure>
+<p>最后删除temp分支</p>
+<p>但是！我发现自己创的temp分支根本和这篇里的不一样，我只是创了一个temp 但并没有我原来的那个代码，以为这个方法也凉凉，但还是坚信代码能找回来！毕竟commit过，怎么会丢呢？</p>
+<p>首先我们分析一下这个Warning，git把我们新的提交已经创好了一个版本号，但是实际上这个版本没有完全成功因为他说没有提交到任一分支，（奇怪我坚信自己肯定是选了，和平时操作一样），但这个编号为xxxx的commit实际上是肯定存在某个地方的，git也建议我们使用temp分支来解决这个问题，所以解决思路应该吗没问题</p>
+<p>最后意识到自己在遇到这个Warning后又自己checkout了master分支又切回来多次，所以当下的git状态可能没有之前我commit的这条xxxx，所以创建temp分支会有语法错误，于是git log找到当时我提交的那个head 版本号，再reset回去，保险起见我在IDEA里右击-git-reset里退回（防止我自己敲错）然后再按照上面的步骤重新合并，成功！</p>
+<p>花了差不多半个小时挽回了自己两天的代码…</p>
+<h2 id="sublist"><a href="#sublist" class="headerlink" title="sublist()"></a>sublist()</h2><p>List中有个sublist方法的小标为左闭右开</p>
+<h2 id="git-无法重输密码的问题"><a href="#git-无法重输密码的问题" class="headerlink" title="git 无法重输密码的问题"></a>git 无法重输密码的问题</h2><p>公司内网gitlab代码down不下来，因为一段时间没用gitlab，可能第一次输密码的时候错了，导致怎么都拉不下来代码，想重新输入又没有跳出来弹框，在外面用命令直接输出现Authentication failed。于是按照<a href="https://blog.csdn.net/qq_40028324/article/details/80883010" target="_blank" rel="noopener">https://blog.csdn.net/qq_40028324/article/details/80883010</a>将密码清空之后再输一次就成功了。</p>
+<h2 id="log占位符"><a href="#log占位符" class="headerlink" title="log占位符"></a>log占位符</h2><p>研究大佬们代码发现他们log放参数的方法没有见过，是这个样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.info(&quot;xxxxxx:&#123;&#125;&quot;,obj.getXXX());</span><br></pre></td></tr></table></figure>
+<p>这种大括号的占位符方式是log特有的，非常方便，多参数还可以加上序号区分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LOGGER.log(Level.INFO,&quot;&#123;0&#125;&#123;1&#125;&#123;2&#125;&quot;,new Object[]&#123;&quot;刘利新&quot;,System.getProperty(&quot;line.separator&quot;),&quot;西安&quot;&#125;);</span><br></pre></td></tr></table></figure>
+<p>来自<a href="https://blog.csdn.net/weiyanghuadi/article/details/9271447" target="_blank" rel="noopener">https://blog.csdn.net/weiyanghuadi/article/details/9271447</a></p>
+<h2 id="IDEA常用快捷键"><a href="#IDEA常用快捷键" class="headerlink" title="IDEA常用快捷键"></a>IDEA常用快捷键</h2><p>Ctrl+Shift+Backspace，跳转到上次编辑的地方</p>
+<p>F2 或 Shift+F2，高亮错误或警告快速定位</p>
+<p>Alt+Shift+Up/Down，上/下移一行</p>
+<h2 id="String-Date和Timestamp转化"><a href="#String-Date和Timestamp转化" class="headerlink" title="String Date和Timestamp转化"></a>String Date和Timestamp转化</h2><p>因为原文真的太详细了，实在不忍心复制黏贴下来，请查阅原文：<a href="https://www.cnblogs.com/qima/p/3652566.html" target="_blank" rel="noopener">https://www.cnblogs.com/qima/p/3652566.html</a></p>
+<p>另外timestamp的单位为秒或毫秒</p>
+<h2 id="数据库datetime类型的set方法"><a href="#数据库datetime类型的set方法" class="headerlink" title="数据库datetime类型的set方法"></a>数据库datetime类型的set方法</h2><p>datetime类型在java中导入用setTimestamp()方法</p>
+<h2 id="util-Date与sql-Date转化"><a href="#util-Date与sql-Date转化" class="headerlink" title="util.Date与sql.Date转化"></a>util.Date与sql.Date转化</h2><p>数据库中拿到的Date是sql包的，赋给util.Date时会报错,转换方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlDate = new Timestamp(utilDate.getTime());</span><br><span class="line">utilDate = new Date(sqlDate.getTime());</span><br></pre></td></tr></table></figure>
+<p>同时，两者均可被SimpleDateFormat格式化</p>
+<h2 id="设置Date时间"><a href="#设置Date时间" class="headerlink" title="设置Date时间"></a>设置Date时间</h2><p>这边是设置Date时分秒为0的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Date tradeDay = candleStick.getTradeDay();</span><br><span class="line">Calendar calendar = Calendar.getInstance();</span><br><span class="line">calendar.setTime(tradeDay);</span><br><span class="line">calendar.set(Calendar.HOUR,0);</span><br><span class="line">calendar.set(Calendar.MINUTE,0);</span><br><span class="line">calendar.set(Calendar.SECOND,0);</span><br></pre></td></tr></table></figure>
+<h2 id="List与ArrayList的区别"><a href="#List与ArrayList的区别" class="headerlink" title="List与ArrayList的区别"></a>List与ArrayList的区别</h2><p><a href="https://www.cnblogs.com/zcscnn/p/7743507.html" target="_blank" rel="noopener">https://www.cnblogs.com/zcscnn/p/7743507.html</a></p>
+<p>这些基础知识有些忘了，今天看代码时突然不明白为什么通常使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List list = new ArrayList()</span><br></pre></td></tr></table></figure>
+<p>找到这篇博客复习了集合，ArrayList是List的实现类，而作为接口List的扩展性是很好的</p>
+<h2 id="java8中stream，filter遍历代替for"><a href="#java8中stream，filter遍历代替for" class="headerlink" title="java8中stream，filter遍历代替for"></a>java8中stream，filter遍历代替for</h2><p>今天看代码又发现一处没见过的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;QuotesConfigTimeSubsection&gt; subsectionList = tradeTime.stream()</span><br><span class="line">        .filter(info -&gt; info.getStartMonth() &lt;= month &amp;&amp; info.getEndMonth() &gt;= month)</span><br><span class="line">        .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<p>了解了这种新特性的写法，看上去的确比for来的清爽的多</p>
+<p>stream().filter可过滤一个满足某条件的集合并赋值，</p>
+<p>stream().map可直接遍历一整个集合并赋值</p>
+<p>另外还有filtermap还没用过</p>
+<h2 id="sql中-Limit1的作用"><a href="#sql中-Limit1的作用" class="headerlink" title="sql中 Limit1的作用"></a>sql中 Limit1的作用</h2><p>在某些情况下,如果明知道查询结果只有一个,SQL语句中使用LIMIT 1会提高查询效率。 只要找到了对应的一条记录,就不会继续向下扫描了,效率会大大提高。</p>
+<p>如果email是索引的话,就不需要加上LIMIT 1,如果是根据主键查询一条记录也不需要LIMIT 1,主键也是索引</p>
+<p>当然，还有最简单的应用是只找出一个</p>
+<h2 id="SpringBoot接收Date型入参和出参"><a href="#SpringBoot接收Date型入参和出参" class="headerlink" title="SpringBoot接收Date型入参和出参"></a>SpringBoot接收Date型入参和出参</h2><p>可以在JavaBean中对Date型数据加注解达到控制入参出参格式的作用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@DateTimeFormat(pattern=&quot;yyyy-MM-dd HH:mm:ss&quot;)</span><br><span class="line">@JsonFormat(timezone = &quot;GMT+8&quot;,pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/21/单例模式get/" rel="next" title="单例模式get">
+                <i class="fa fa-chevron-left"></i> 单例模式get
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTE3Ni8xNTcwMw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wyy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WYuyin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:9005837@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA中WebApplication-Exploded与Archive区别"><span class="nav-number">1.</span> <span class="nav-text">IDEA中WebApplication:Exploded与Archive区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-Warning-detached-HEAD"><span class="nav-number">2.</span> <span class="nav-text">git Warning detached HEAD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sublist"><span class="nav-number">3.</span> <span class="nav-text">sublist()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-无法重输密码的问题"><span class="nav-number">4.</span> <span class="nav-text">git 无法重输密码的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log占位符"><span class="nav-number">5.</span> <span class="nav-text">log占位符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA常用快捷键"><span class="nav-number">6.</span> <span class="nav-text">IDEA常用快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-Date和Timestamp转化"><span class="nav-number">7.</span> <span class="nav-text">String Date和Timestamp转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库datetime类型的set方法"><span class="nav-number">8.</span> <span class="nav-text">数据库datetime类型的set方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#util-Date与sql-Date转化"><span class="nav-number">9.</span> <span class="nav-text">util.Date与sql.Date转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Date时间"><span class="nav-number">10.</span> <span class="nav-text">设置Date时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List与ArrayList的区别"><span class="nav-number">11.</span> <span class="nav-text">List与ArrayList的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java8中stream，filter遍历代替for"><span class="nav-number">12.</span> <span class="nav-text">java8中stream，filter遍历代替for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql中-Limit1的作用"><span class="nav-number">13.</span> <span class="nav-text">sql中 Limit1的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot接收Date型入参和出参"><span class="nav-number">14.</span> <span class="nav-text">SpringBoot接收Date型入参和出参</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wyy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">29.8k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+	<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hKLsKDrV2s4IlesdGgbIKSs5-gzGzoHsz", "Qkn12z1iSOL910dkB6w4R2uw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
