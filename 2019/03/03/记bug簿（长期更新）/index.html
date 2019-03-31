@@ -90,7 +90,7 @@
 <meta property="og:description" content="开这篇blog的来源是因为工作中真的遇到了很多大大小小的问题，平时有空我都会记录下来，但由于又不是很重要或者很难的东西，（一切都源于我菜才会有这些问题），不想为这些分别立一篇，但还是有记录的价值的！（记录了自己成长哈哈哈） 我会按照内容来做标题，也会order by desc，这篇的开始为19/2/13，所以一些小问题以后就不会立一篇博客了，只有当我觉得很重要的东西才会不放在这里面。 另外每一个b">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/03/03/记bug簿（长期更新）/111.png">
-<meta property="og:updated_time" content="2019-03-03T06:16:22.313Z">
+<meta property="og:updated_time" content="2019-03-31T10:17:34.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记bug簿（长期更新）">
 <meta name="twitter:description" content="开这篇blog的来源是因为工作中真的遇到了很多大大小小的问题，平时有空我都会记录下来，但由于又不是很重要或者很难的东西，（一切都源于我菜才会有这些问题），不想为这些分别立一篇，但还是有记录的价值的！（记录了自己成长哈哈哈） 我会按照内容来做标题，也会order by desc，这篇的开始为19/2/13，所以一些小问题以后就不会立一篇博客了，只有当我觉得很重要的东西才会不放在这里面。 另外每一个b">
@@ -345,7 +345,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.8k 字
+                  2k 字
                 </span>
               
 
@@ -361,7 +361,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6 min
+                  8 min
                 </span>
               
             </div>
@@ -385,6 +385,13 @@
         <p>开这篇blog的来源是因为工作中真的遇到了很多大大小小的问题，平时有空我都会记录下来，但由于又不是很重要或者很难的东西，（一切都源于我菜才会有这些问题），不想为这些分别立一篇，但还是有记录的价值的！（记录了自己成长哈哈哈）</p>
 <p>我会按照内容来做标题，也会order by desc，这篇的开始为19/2/13，所以一些小问题以后就不会立一篇博客了，只有当我觉得很重要的东西才会不放在这里面。</p>
 <p>另外每一个bug解决不可能完全不依赖搜索引擎，但是我会记录原文地址。</p>
+<h2 id="Mysql-error-code-1366"><a href="#Mysql-error-code-1366" class="headerlink" title="Mysql error code 1366"></a>Mysql error code 1366</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">### Error updating database.  Cause: java.sql.SQLException: Incorrect string value: &apos;\xE6\x9D\xA5\xE8\x87\xAA...&apos; for column &apos;content&apos; at row 1</span><br><span class="line">### The error may involve com.gkoudai.futureManage.Mapper.RedMsgMapper.insertSelective-Inline</span><br><span class="line">### The error occurred while setting parameters</span><br><span class="line">### SQL: insert into tb_exchange_notice      ( id,                       title,                       content,                       sort,                                     url,                                                   icon,                              old_id,                       exchange_name,                       is_show )       values ( ?,                       ?,                       ?,                       ?,                                     ?,                                                   ?,                              ?,                       ?,                       ? )</span><br><span class="line">### Cause: java.sql.SQLException: Incorrect string value: &apos;\xE6\x9D\xA5\xE8\x87\xAA...&apos; for column &apos;content&apos; at row 1</span><br><span class="line">; uncategorized SQLException; SQL state [HY000]; error code [1366]; Incorrect string value: &apos;\xE6\x9D\xA5\xE8\x87\xAA...&apos; for column &apos;content&apos; at row 1</span><br></pre></td></tr></table></figure>
+<p>这里content设为text格式，字符编码应为utf-8，默认是latin不支持中文，会报1366错</p>
+<h2 id="Mybatis-OrderBy问题"><a href="#Mybatis-OrderBy问题" class="headerlink" title="Mybatis OrderBy问题"></a>Mybatis OrderBy问题</h2><p>多条件排序</p>
+<p>example.setOrderByClauser(“timestamp DESC, name ASC”);</p>
+<h2 id="如何将一个bean的属性赋给另一个bean"><a href="#如何将一个bean的属性赋给另一个bean" class="headerlink" title="如何将一个bean的属性赋给另一个bean"></a>如何将一个bean的属性赋给另一个bean</h2><p>两个类的属性不一定全部相同，但希望相同的属性中能映射过去。</p>
+<p>Spring的BeanUtils.copyProperties()方法</p>
+<h2 id="如何判断一个元素在数组中"><a href="#如何判断一个元素在数组中" class="headerlink" title="如何判断一个元素在数组中"></a>如何判断一个元素在数组中</h2><p>indexOf()若大于零则存在</p>
 <h2 id="IDEA中WebApplication-Exploded与Archive区别"><a href="#IDEA中WebApplication-Exploded与Archive区别" class="headerlink" title="IDEA中WebApplication:Exploded与Archive区别"></a>IDEA中WebApplication:Exploded与Archive区别</h2><p>原文：<a href="https://blog.csdn.net/ydk888888/article/details/77247725" target="_blank" rel="noopener">https://blog.csdn.net/ydk888888/article/details/77247725 </a></p>
 <p>对这个问题的疑惑是当时有个同事交接给我项目时，用IDEA跑普通maven项目起不来，于是以为是artifacts配置的问题，设置的地方在IDEA右上角有个蓝色俄罗斯方块的文件夹-Project Settings-Artifacts，就产生了疑惑，WebApplication:Exploded和WebApplication:Archive有啥区别？</p>
 <p><img src="/2019/03/03/记bug簿（长期更新）/111.png"></p>
@@ -477,6 +484,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/31/深入了解ConcurrentHashMap/" rel="prev" title="深入了解ConcurrentHashMap">
+                深入了解ConcurrentHashMap <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -557,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -635,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA中WebApplication-Exploded与Archive区别"><span class="nav-number">1.</span> <span class="nav-text">IDEA中WebApplication:Exploded与Archive区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-Warning-detached-HEAD"><span class="nav-number">2.</span> <span class="nav-text">git Warning detached HEAD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sublist"><span class="nav-number">3.</span> <span class="nav-text">sublist()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-无法重输密码的问题"><span class="nav-number">4.</span> <span class="nav-text">git 无法重输密码的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log占位符"><span class="nav-number">5.</span> <span class="nav-text">log占位符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA常用快捷键"><span class="nav-number">6.</span> <span class="nav-text">IDEA常用快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-Date和Timestamp转化"><span class="nav-number">7.</span> <span class="nav-text">String Date和Timestamp转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库datetime类型的set方法"><span class="nav-number">8.</span> <span class="nav-text">数据库datetime类型的set方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#util-Date与sql-Date转化"><span class="nav-number">9.</span> <span class="nav-text">util.Date与sql.Date转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Date时间"><span class="nav-number">10.</span> <span class="nav-text">设置Date时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List与ArrayList的区别"><span class="nav-number">11.</span> <span class="nav-text">List与ArrayList的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java8中stream，filter遍历代替for"><span class="nav-number">12.</span> <span class="nav-text">java8中stream，filter遍历代替for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql中-Limit1的作用"><span class="nav-number">13.</span> <span class="nav-text">sql中 Limit1的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot接收Date型入参和出参"><span class="nav-number">14.</span> <span class="nav-text">SpringBoot接收Date型入参和出参</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql-error-code-1366"><span class="nav-number">1.</span> <span class="nav-text">Mysql error code 1366</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mybatis-OrderBy问题"><span class="nav-number">2.</span> <span class="nav-text">Mybatis OrderBy问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何将一个bean的属性赋给另一个bean"><span class="nav-number">3.</span> <span class="nav-text">如何将一个bean的属性赋给另一个bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何判断一个元素在数组中"><span class="nav-number">4.</span> <span class="nav-text">如何判断一个元素在数组中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA中WebApplication-Exploded与Archive区别"><span class="nav-number">5.</span> <span class="nav-text">IDEA中WebApplication:Exploded与Archive区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-Warning-detached-HEAD"><span class="nav-number">6.</span> <span class="nav-text">git Warning detached HEAD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sublist"><span class="nav-number">7.</span> <span class="nav-text">sublist()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-无法重输密码的问题"><span class="nav-number">8.</span> <span class="nav-text">git 无法重输密码的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log占位符"><span class="nav-number">9.</span> <span class="nav-text">log占位符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA常用快捷键"><span class="nav-number">10.</span> <span class="nav-text">IDEA常用快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-Date和Timestamp转化"><span class="nav-number">11.</span> <span class="nav-text">String Date和Timestamp转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库datetime类型的set方法"><span class="nav-number">12.</span> <span class="nav-text">数据库datetime类型的set方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#util-Date与sql-Date转化"><span class="nav-number">13.</span> <span class="nav-text">util.Date与sql.Date转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Date时间"><span class="nav-number">14.</span> <span class="nav-text">设置Date时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List与ArrayList的区别"><span class="nav-number">15.</span> <span class="nav-text">List与ArrayList的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java8中stream，filter遍历代替for"><span class="nav-number">16.</span> <span class="nav-text">java8中stream，filter遍历代替for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql中-Limit1的作用"><span class="nav-number">17.</span> <span class="nav-text">sql中 Limit1的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot接收Date型入参和出参"><span class="nav-number">18.</span> <span class="nav-text">SpringBoot接收Date型入参和出参</span></a></li></ol></div>
             
 
           </div>
@@ -669,7 +680,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">29.8k</span>
+    <span title="Site words total count">33.5k</span>
   
 </div>
 
