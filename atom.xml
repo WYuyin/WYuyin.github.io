@@ -137,9 +137,9 @@
       <category term="中间件" scheme="http://yoursite.com/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
     
     
-      <category term="kafka" scheme="http://yoursite.com/tags/kafka/"/>
-    
       <category term="MQ" scheme="http://yoursite.com/tags/MQ/"/>
+    
+      <category term="kafka" scheme="http://yoursite.com/tags/kafka/"/>
     
   </entry>
   
