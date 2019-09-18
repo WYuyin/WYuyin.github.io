@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据库," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一只小喵喵的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="参考：http://cmsblogs.com/?p=5477 https://blog.csdn.net/tongdanping/article/details/79878302 https://www.cnblogs.com/JiangLe/p/6362770.html https://blog.csdn.net/du5006150054/article/details/82379210 记得大">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库索引">
+<meta property="og:url" content="http://yoursite.com/2019/09/18/数据库索引/index.html">
+<meta property="og:site_name" content="一只小喵喵的博客">
+<meta property="og:description" content="参考：http://cmsblogs.com/?p=5477 https://blog.csdn.net/tongdanping/article/details/79878302 https://www.cnblogs.com/JiangLe/p/6362770.html https://blog.csdn.net/du5006150054/article/details/82379210 记得大">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img-blog.csdn.net/20160202204827368">
+<meta property="og:image" content="https://img-blog.csdn.net/20160202205105560">
+<meta property="og:updated_time" content="2019-09-18T10:01:40.663Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库索引">
+<meta name="twitter:description" content="参考：http://cmsblogs.com/?p=5477 https://blog.csdn.net/tongdanping/article/details/79878302 https://www.cnblogs.com/JiangLe/p/6362770.html https://blog.csdn.net/du5006150054/article/details/82379210 记得大">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20160202204827368">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/18/数据库索引/"/>
+
+
+
+
+
+  <title>数据库索引 | 一只小喵喵的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">一只小喵喵的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-个人介绍">
+          <a href="/introduction/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bomb"></i> <br />
+            
+            个人介绍
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/18/数据库索引/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wyy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="一只小喵喵的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库索引</h1>
+        
+
+        <div class="post-meta">
+		
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-18T10:34:53+08:00">
+                2019-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/09/18/数据库索引/" class="leancloud_visitors" data-flag-title="数据库索引">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考：<a href="http://cmsblogs.com/?p=5477" target="_blank" rel="noopener">http://cmsblogs.com/?p=5477</a></p>
+<p><a href="https://blog.csdn.net/tongdanping/article/details/79878302" target="_blank" rel="noopener">https://blog.csdn.net/tongdanping/article/details/79878302</a></p>
+<p><a href="https://www.cnblogs.com/JiangLe/p/6362770.html" target="_blank" rel="noopener">https://www.cnblogs.com/JiangLe/p/6362770.html</a></p>
+<p><a href="https://blog.csdn.net/du5006150054/article/details/82379210" target="_blank" rel="noopener">https://blog.csdn.net/du5006150054/article/details/82379210</a></p>
+<p>记得大二刚开始学数据库的时候，学的Oracle，书本和考试的重点就是一些增删改查、视图存储过程，索引只是一带而过，也不知道这东西究竟是什么原理，有什么效果，（也许老师讲过我忘了），总之当时并不觉得时什么很重要的内容，但现在却常常提起。</p>
+<p>有时开会的时候大佬们讨论要不要建索引 怎么建，还有看到许多面试题会扯到，索引的机制、策略等</p>
+<p>索引，可以看作一个特定的结构，以某种方式指向数据，这样就不用检索全表，而采取先检索索引的达到快速查找的目的。在MySQL中，索引属于存储引擎级别的概念，不同存储引擎对索引的实现方式是不同的，而在MySQL中使用的是Innodb引擎。</p>
+<h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><p><strong>常见的索引类型有：主键索引、唯一索引、普通索引、全文索引、组合索引</strong></p>
+<p>1、主键索引：即主索引，根据主键pk_clolum（length）建立索引，不允许重复，不允许空值；</p>
+<p><code>ALTER TABLE &#39;table_name&#39; ADD PRIMARY KEY pk_index(&#39;col&#39;)；</code><br>2、唯一索引：用来建立索引的列的值必须是唯一的，允许空值</p>
+<p><code>ALTER TABLE &#39;table_name&#39; ADD UNIQUE index_name(&#39;col&#39;)；</code><br>3、普通索引：用表中的普通列构建的索引，没有任何限制</p>
+<p><code>ALTER TABLE &#39;table_name&#39; ADD INDEX index_name(&#39;col&#39;)；</code><br>4、全文索引：用大文本对象的列构建的索引（下一部分会讲解）</p>
+<p><code>ALTER TABLE &#39;table_name&#39; ADD FULLTEXT INDEX ft_index(&#39;col&#39;)；</code><br>5、组合索引：用多个列组合构建的索引，这多个列中的值不允许有空值</p>
+<p><code>ALTER TABLE &#39;table_name&#39; ADD INDEX index_name(&#39;col1&#39;,&#39;col2&#39;,&#39;col3&#39;)；</code></p>
+<ul>
+<li><p>遵循“最左前缀”原则，把最常用作为检索或排序的列放在最左，依次递减，组合索引相当于建立了col1,col1col2,col1col2col3三个索引，而col2或者col3是不能使用索引的。</p>
+</li>
+<li><p>在使用组合索引的时候可能因为列名长度过长而导致索引的key太大，导致效率降低，在允许的情况下，可以只取col1和col2的前几个字符作为索引</p>
+</li>
+</ul>
+<p><code>ALTER TABLE &#39;table_name&#39; ADD INDEX index_name(col1(4),col2（3))；</code></p>
+<h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><p>有非空、自增、唯一、主键四大约束，当然还有外键，只不过外键我一般不用</p>
+<p>想必你已经很熟悉 MySQL Innodb 中的 AUTO_INCREMENT，如果某个字段添加了这个约束条件，插入数据的时候，如果没有给该字段指定一个值，那么它就会自动插入一个自增长的值。</p>
+<h3 id="AUTO-INCREMENT"><a href="#AUTO-INCREMENT" class="headerlink" title="AUTO_INCREMENT"></a>AUTO_INCREMENT</h3><p>AUTO_INCREMENT 是 Innodb 提供的一种可配置的锁定机制，如果某个表的某一列具有 AUTO_INCREMENT 约束，那么向该表添加数据的时候可以很明显的提高 SQL 语句的性能和可伸缩性。</p>
+<p>指定了AUTO_INCREMENT的列必须要建索引，不然会报错。这个索引不一定就是主键，甚至可以不是唯一索引。</p>
+<p>通常情况下，为了最大化性能，添加了 AUTO_INCREMENT 约束的列要么独自成一个索引 ( 主索引 )，那么是组合索引中的第一列</p>
+<h3 id="AUTO-INCREMENT锁的模式"><a href="#AUTO-INCREMENT锁的模式" class="headerlink" title="AUTO_INCREMENT锁的模式"></a>AUTO_INCREMENT锁的模式</h3><p>使用了 AUTO_INCREMENT 那么多次，我们已经知道它的主要作用就是产生一个不重复的 「 自增值 」。</p>
+<p>我们知道，插入多条数据有两种插入方法，一种是一条一条的执行 INSERT INTO，另一种是 INSERT INTO VALUES(…),(…) 多条一起插入</p>
+<p>这两种插入方法都能正确的自增 AUTO_INCREMENT 列，它们是如何做的呢 ？</p>
+<p>这就仰赖了 <strong>AUTO_INCREMENT 锁</strong>，为了适应这两种插入方法，它同时也具有多种模式。</p>
+<p>「 AUTO_INCREMENT 锁」模式的配置变量为 <code>innodb_autoinc_lock_mode</code> ，我们可以通过下面的语句查看当前的模式是什么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;innodb_autoinc_lock_mode&apos;;</span><br></pre></td></tr></table></figure>
+<p>在我的 <code>5.7.22</code> 的版本的 MySQL 中，输出结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> mysql&gt; show variables like &apos;innodb_autoinc_lock_mode&apos;;</span><br><span class="line">+--------------------------+-------+</span><br><span class="line">| Variable_name            | Value |</span><br><span class="line">+--------------------------+-------+</span><br><span class="line">| innodb_autoinc_lock_mode | 1     |</span><br><span class="line">+--------------------------+-------+</span><br></pre></td></tr></table></figure>
+<p>配置参数 <code>innodb_autoinc_lock_mode</code> 有三个可选的值，分别是 <code>0</code>、<code>1</code> 和 <code>2</code> ，分别代表着 「 传统 」，「 连续 」 或 「 交错 」 三种锁模式</p>
+<p>在不同的版本下，<code>innodb_autoinc_lock_mode</code> 的默认值是不一样的，在 <code>mysql &gt;= 8.0.3</code> 版本中是 <code>2</code>，也就是 「 交错 」 模式，而 <code>mysql &lt;= 8.0.2</code> 版本中是 <code>1</code>，也就是 「 连续 」 模式</p>
+<p>对于 <code>8.0.3</code> 版本中的这种变更，也反应了 Innodb 的默认 「 复制模式 」 已经从基于 <strong>SQL 语句</strong> 变更为基于 <strong>行</strong> ( row )</p>
+<p>基于 SQL 语句的复制需要 「 连续 」 模式的 「 AUTO_INCREMENT 锁」，以确保为给定的 SQL 语句序列以可预测和可重复的顺序分配自动增量值，而基于行的复制对 SQL 语句的执行顺序不敏感</p>
+<p><strong>术语</strong><br>在我们继续讲解之前，为了方便大家理解一些术语或概念，我们先罗列在此</p>
+<p>「 insert like 」 语句</p>
+<p>所有可以在表中添加新行的语句，我们称之为 「 insert like 」 语句，例如</p>
+<p>INSERT, INSERT … SELECT<br>REPLACE<br>REPLACE … SELECT<br>LOAD DATA<br>其它的还有 「 simple-inserts 」、「 bulk-inserts 」和 「 mixed-mode 」 三种插入语句<br>「 simple-inserts 」 语句</p>
+<p>「 simple-inserts 」 是可以预先确定要插入的行数的语句 ( 最初处理语句时 )。包括不带子查询的 单行 和 多行 INSERT 和REPLACE 语句，但不包括 INSERT … ON DUPLICATE KEY UPDATE 语句</p>
+<p>「 Bulk inserts 」 批量插入</p>
+<p>「 Bulk inserts 」是预先不知道要插入的行数（以及所需的自动增量值的数量）的语句。</p>
+<p>包括 INSERT … SELECT，REPLACE … SELECT 和 LOAD DATA 语句，但不包括普通的 INSERT</p>
+<p>在处理每一行时，InnoDB 都会重新为 AUTO_INCREMENT 列分配一个新值</p>
+<p>「 Mixed-mode inserts 」 混合模式插入</p>
+<p>「 Mixed-mode inserts 」 是指「 simple-inserts 」 语句中，有些指定了 AUTO_INCREMENT 列的值，而另一些则没有。</p>
+<p>例如下面的 SQL 语句，其中 c1 是表 t1 的 AUTO_INCREMENT 列</p>
+<p>INSERT INTO t1 (c1,c2) VALUES (1,’a’), (NULL,’b’), (5,’c’), (NULL,’d’);</p>
+<p>另一种类型的 「 Mixed-mode inserts 」 是 INSERT … ON DUPLICATE KEY UPDATE ，这种语句最坏的情况下实际上是 INSERT 后跟 UPDATE，其中在更新阶段，可能会也可能不会为 AUTO_INCREMENT 列的分配值</p>
+<h4 id="innodb-autoinc-lock-mode-0-传统锁模式"><a href="#innodb-autoinc-lock-mode-0-传统锁模式" class="headerlink" title="innodb_autoinc_lock_mode = 0 传统锁模式"></a>innodb_autoinc_lock_mode = 0 传统锁模式</h4><p>传统锁模式是在 <code>MySQL 5.1</code> 中引入 <code>innodb_autoinc_lock_mode</code> 配置参数之前的默认模式。现在，传统锁模式存在的意义，仅仅是用于向后兼容，性能测试以及解决 「 混合模式插入 」 问题，因为语义方面可能存在差异。</p>
+<p>在这种锁模式下，为了向具有 <code>AUTO_INCREMENT</code> 列的表中插入数据，所有的 「 insert like 」 语句都会获得一个特殊的 <strong>表级 AUTO-INC</strong> 锁，这种锁会自动添加到 SQL 语句的末尾 ( 不是事务的末尾 )，以确保以可预测且可重复的顺序为给定的 INSERT 语句序列分配自增值，并确保为任何给定语句分配的自增值都是连续的。</p>
+<p>在基于 SQL 语句的 ( 主从 ) 复制环境中，在从服务器上运行复制 SQL 语句时，自增量列的值和主服务器的值相同，这样执行多个 INSERT 语句的结果是确定性的，并且从服务器的数据和主服务器的数据一摸一样。</p>
+<p>如果多个 INSERT 语句生成的自增值是交错的，那么两个并发 INSERT 语句的结果将是不确定的，这样就无法使用基于 SQL 语句的复制模式将数据可靠地复制到从服务器</p>
+<p>凸(艹皿艹 ) 啃不动了，有点干，换个看看</p>
+<p>1、它提供了一个向后兼容的能力<br>2、在这一模式下，所有的insert语句(“insert like”) 都要在语句开始的时候得到一个表级的auto_inc锁，在语句结束的时候才释放这把锁，注意呀，这里说的是语句级而不是事务级的，一个事务可能包涵有一个或多个语句。<br>3、它能保证值分配的可预见性，与连续性，可重复性，这个也就保证了insert语句在复制到slave的时候还能生成和master那边一样的值(它保证了基于语句复制的安全)。<br>4、由于在这种模式下auto_inc锁一直要保持到语句的结束，所以这个就影响到了并发的插入。</p>
+<h4 id="innodb-autoinc-lock-mode-1-连续锁模式"><a href="#innodb-autoinc-lock-mode-1-连续锁模式" class="headerlink" title="innodb_autoinc_lock_mode = 1 连续锁模式"></a>innodb_autoinc_lock_mode = 1 连续锁模式</h4><p>1、这一模式下去simple insert 做了优化，由于simple insert一次性插入值的个数可以立马得到确定，所以mysql可以一次生成几个连续的值，用于这个insert语句；总的来说这个对复制也是安全的<br>          (它保证了基于语句复制的安全)<br>2、这一模式也是mysql的默认模式，这个模式的好处是auto_inc锁不要一直保持到语句的结束，只要语句得到了相应的值后就可以提前释放锁</p>
+<h4 id="innodb-autoinc-lock-mode-2-交错锁模式"><a href="#innodb-autoinc-lock-mode-2-交错锁模式" class="headerlink" title="innodb_autoinc_lock_mode = 2 交错锁模式"></a>innodb_autoinc_lock_mode = 2 交错锁模式</h4><p>由于这个模式下已经没有了auto_inc锁，且多个语句可以同时执行，所以这个模式下的性能是最好的；但是它也有一个问题，就是对于同一个语句来说它所得到的auto_incremant值可能不是连续的。</p>
+<hr>
+<p>简单总结这三种锁模式</p>
+<p>传统锁模式 – 不管三七二十一，先用表级的 AUTO-INC 锁，直到语句插入完成，然后释放锁<br>连续锁模式 – 不管三七二十一，先用互斥锁，然后生成所有插入行需要的自增值，然后释放互斥锁，最后使用这些自增值来插入数据。对于行数未知的，那就只能使用 「 传统锁 」 模式了，先锁起来，执行完毕了再释放，因为人家不知道要生成多少自增值啊<br>交错模式 – 管它刮风下雨，需要的时候再生成，也管它连续与否，用了就是了…</p>
+<p>交错模式在日常的 <code>SELECT</code> 语句中是不会出啥问题的，因为会按照自增值排序，出问题就处恢复数据或主从过程中的二进制日志回放，可能导致从库或者恢复的数据的自增值和源数据不一致。</p>
+<h3 id="丢失自增值和序列间隙"><a href="#丢失自增值和序列间隙" class="headerlink" title="丢失自增值和序列间隙"></a>丢失自增值和序列间隙</h3><p>无论你使用的是哪种锁模式 ( 0 , 1 或 2 )，如果生成自增值的事务回滚，则这些自增量值将 「 丢失 」。</p>
+<p>一旦为 <code>AUTO_INCREMENT</code> 列生成一个自增值后，无论 「 INSERT-like 」 语句是否完成，以及包含事务是否回滚，都无法回滚该自增值。</p>
+<p>这些丢失的自增值不会被重复使用。因此，表的 <code>AUTO_INCREMENT</code> 列中的值可能存在间隙</p>
+<p>这一点我遇到过，如果删除表中自增主键最大的一行信息，再添加新的一条数据时生成的主键是跳过被删除的主键的，<strong>丢失的自增值不会被重复使用</strong></p>
+<h3 id="「-批量插入-」-中的自增值的间隙"><a href="#「-批量插入-」-中的自增值的间隙" class="headerlink" title="「 批量插入 」 中的自增值的间隙"></a>「 批量插入 」 中的自增值的间隙</h3><p>对于锁模式 1 和 2 ，连续的语句间也可能出现间隙，因为批量插入，可能并不知道每个语句所需的确切数量的自增值，可能会存在高估，如果一旦高估了，那么高估的自增值将会被抛弃且永远也不会使用到。</p>
+<h2 id="聚簇索引与非聚簇索引"><a href="#聚簇索引与非聚簇索引" class="headerlink" title="聚簇索引与非聚簇索引"></a>聚簇索引与非聚簇索引</h2><p>从数据存储方式上索引可以分为聚簇索引（又叫主索引）和非聚簇索引（又叫二级索引、辅助索引）两种</p>
+<p>聚簇索引就是 「 主键 」( primary key ) ，Innodb 使用它存储表中每一行的数据。</p>
+<p>如果想要从 <a href="https://www.twle.cn/l/yufei/mysql/mysql-basic-select-query.html" target="_blank" rel="noopener">查询</a>，<a href="https://www.twle.cn/l/yufei/mysql/mysql-basic-insert-query.html" target="_blank" rel="noopener">插入</a> 和其它数据库操作中获得最佳性能，那么我们就必须了解 InnoDB 如何使用 <strong>聚簇索引</strong> 来优化每个表的最常见检索和 DML 操作方式</p>
+<ul>
+<li><p>当我们在一个 Innodb 表上定义了一个主键，InnoDB 会默认的使用它作为聚簇索引。</p>
+<p>使用 InnoDB 存储引擎时，建议为每个表都添加一个主键。如果该表没有一个逻辑唯一且非空列或列集合，那么可以添加一个带有 <a href="https://www.twle.cn/c/yufei/innodb/innodb-basic-auto_increment.html" target="_blank" rel="noopener">AUTO_INCREMENT</a> 约束的自增列作为主键，InnoDB 会自动填充该列。</p>
+</li>
+<li><p>如果某个 InnoDB 表并没有定义主键。那么 InnoDB 会查找第一个 「 唯一索引 」( UNIQUE Index ) ，因为唯一索引的所有键 ( key ) 都是 <code>NOT</code> ，因此可以用来作为聚簇索引</p>
+</li>
+<li><p>如果某个 InnoDB 表既没有定义主键，也没有一个合适的唯一索引。InnoDB 会在内部生成一个名为 <code>GEN_CLUST_INDEX</code> 的隐式的聚簇索引</p>
+<p>该聚簇索引的键 ( key ) 会包含一个自动为行生成的 ID 值 ( 行号 ) 。</p>
+<p>该表中的所有行会按 InnoDB 分配给此类表中的行的 ID 排序。</p>
+<p>行 ID 是一个 <strong>6</strong> 字节的字段，在插入新行时会单调自增。</p>
+<p>因此，可以认为物理上的行保存顺序就是该行 ID 排序的排序顺序</p>
+</li>
+</ul>
+<p>另外，MyISAM存储引擎采用的是非聚簇索引，Innodb采取的是聚簇索引</p>
+<h3 id="聚簇索引如何加快查询速度"><a href="#聚簇索引如何加快查询速度" class="headerlink" title="聚簇索引如何加快查询速度"></a>聚簇索引如何加快查询速度</h3><p>通过聚簇索引访问行很快，因为索引搜索直接指向包含所有行数据页 ( data page )。</p>
+<p>如果表很大，与那种索引页与数据页分离的 MyISAM 存储引擎相比， 聚簇索引体系结构通常可以节省磁盘 I/O 操作。</p>
+<h3 id="非聚簇索引和聚簇索引的关系"><a href="#非聚簇索引和聚簇索引的关系" class="headerlink" title="非聚簇索引和聚簇索引的关系"></a>非聚簇索引和聚簇索引的关系</h3><p>非聚簇索引，通常也称之为 「 二级索引 」 ( Secondary Indexes ) 或 「 辅助索引 」 ，一般是指聚簇索引之外的所有其它的索引。</p>
+<p>在 InnoDB 中，每个辅助索引中的每条记录都会包含该行的主键列 ( 也就是聚簇索引的键 ) ，以及为辅助索引指定的列。InnoDB 使用此主键值来搜索聚簇索引中的行</p>
+<h3 id="聚簇索引和非聚簇索引的区别"><a href="#聚簇索引和非聚簇索引的区别" class="headerlink" title="聚簇索引和非聚簇索引的区别"></a>聚簇索引和非聚簇索引的区别</h3><p>如果主键很长，那么辅助索引就会占用更多空间，因此使用短主键是有利的，也是我们所推荐的</p>
+<ol>
+<li><p>首先，我们要认识到聚簇索引和非聚簇索引的划分依据是什么 ？</p>
+<p>答案就是 InnoDB 会使用聚簇索索引来保存数据，而非聚簇索引的目的仅仅是加快查询速度</p>
+</li>
+<li><p>在第一点认知基础上，我们就可以知道</p>
+<ul>
+<li>聚簇索引是唯一的，一个 InnoDB 表只有一个聚簇索引，而且一定会有一个聚簇索引，如果不存在，Innodb 存储引擎会自动添加一个</li>
+<li>非聚簇所以可以有多个，而且只能由用户自己添加，InnoDB 默认并不会创建任何非聚簇索引。</li>
+</ul>
+</li>
+<li><p>非聚簇索引中一定包含了聚簇索引的列值，但反过来却不存在。</p>
+<p>因此，使用非聚簇索引查询数据一定会用到聚簇索引，但反过来却不存在。</p>
+<blockquote>
+<p>题外话 我总是把聚簇看成聚众索引 啊天呐！这是什么毛病</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="索引的物理结构"><a href="#索引的物理结构" class="headerlink" title="索引的物理结构"></a>索引的物理结构</h2><p>几乎所有的 Innodb 的索引都使用 <code>B 树</code> 数据结构，除了空间索引 ( spatial indexes ) 是个例外（空间索引使用的是 <code>R 树</code>）。</p>
+<p>不管使用的是任何索引结构，索引记录只存储在 B 树 或 R树 数据结构的叶子节点中。索引页的默认大小为 <code>16KB</code></p>
+<p>B+树是Innodb中使用的数据结构，B+树中的B代表平衡（balance），而不是二叉（binary），因为B+树是从最早的平衡二叉树演化而来的。在这之前得先看看B树和B+树都有哪些区别</p>
+<p><strong>恶龙咆哮：B树就是B-树就是平衡二叉树！</strong></p>
+<h3 id="B-树-平衡二叉树"><a href="#B-树-平衡二叉树" class="headerlink" title="B-树(平衡二叉树)"></a>B-树(平衡二叉树)</h3><p>一棵m阶的B-Tree有如下特性：<br>\1. 每个节点最多有m个孩子。<br>\2. 除了根节点和叶子节点外，其它每个节点至少有Ceil(m/2)个孩子。<br>\3. 若根节点不是叶子节点，则至少有2个孩子<br>\4. 所有叶子节点都在同一层，且不包含其它关键字信息<br>\5. 每个非终端节点包含n个关键字信息（P0,P1,…Pn, k1,…kn）<br>\6. 关键字的个数n满足：ceil(m/2)-1 &lt;= n &lt;= m-1<br>\7. ki(i=1,…n)为关键字，且关键字升序排序。<br>\8. Pi(i=1,…n)为指向子树根节点的指针。P(i-1)指向的子树的所有节点关键字均小于ki，但都大于k(i-1)</p>
+<p>B-Tree的结构如下：</p>
+<p><img src="https://img-blog.csdn.net/20160202204827368" alt="https://img-blog.csdn.net/20160202204827368"></p>
+<p>在B-Tree的结构下，就可以使用二分查找的查找方式，查找复杂度为h*log(n)，一般来说树的高度是很小的，一般为3左右，因此BTree是一个非常高效的查找结构。</p>
+<p>这边不详细讲树和树的插入删除了，之前看的一个大牛的博客里有详细地讲红黑树时有这些内容，感兴趣可以关注田小波的博客-&gt;<a href="http://www.tianxiaobo.com/2018/01/11/%E7%BA%A2%E9%BB%91%E6%A0%91%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">http://www.tianxiaobo.com/2018/01/11/%E7%BA%A2%E9%BB%91%E6%A0%91%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90/</a></p>
+<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p>B+Tree是BTree的一个优化。在B+Tree中，所有数据记录节点都是按照键值大小顺序存放在<strong>同一层</strong>的叶子节点上，而非叶子节点上只存储key值信息，这样可以大大加大每个节点存储的key值数量，降低B+Tree的高度</p>
+<p>结构如下：</p>
+<p><img src="https://img-blog.csdn.net/20160202205105560" alt="https://img-blog.csdn.net/20160202205105560"></p>
+<p>B+Tree相对于B-Tree有几点不同：</p>
+<ol>
+<li>非叶子节点只存储键值信息。</li>
+<li>所有叶子节点之间都有一个链指针。</li>
+<li>数据记录都存放在叶子节点中。</li>
+</ol>
+<p>通常在B+Tree上有两个头指针，一个指向根节点，另一个指向关键字最小的叶子节点，而且所有叶子节点（即数据节点）之间是一种链式环结构。因此可以对B+Tree进行两种查找运算：一种是对于主键的范围查找和分页查找，另一种是从根节点开始，进行随机查找。</p>
+<p>可能上面例子中只有22条数据记录，看不出B+Tree的优点，下面做一个推算：</p>
+<p>InnoDB存储引擎中页的大小为16KB，一般表的主键类型为INT（占用4个字节）或BIGINT（占用8个字节），指针类型也一般为4或8个字节，也就是说一个页（B+Tree中的一个节点）中大概存储16KB/(8B+8B)=1K个键值（因为是估值，为方便计算，这里的K取值为〖10〗^3）。也就是说一个深度为3的B+Tree索引可以维护10^3 <em> 10^3 </em> 10^3 = 10亿 条记录。</p>
+<p>实际情况中每个节点可能不能填充满，因此在数据库中，B+Tree的高度一般都在2~4层。MySQL的InnoDB存储引擎在设计时是将根节点常驻内存的，也就是说查找某一键值的行记录时最多只需要1~3次磁盘I/O操作。</p>
+<h3 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h3><ol>
+<li>InnoDB 表使用什么数据结构，它们的数据都保存在哪里</li>
+</ol>
+<p>使用的是 <code>B 树</code> 数据结构，它们的索引数据都保存在叶子节点中。</p>
+<ol start="2">
+<li>InnoDB 的页大小一般是多少，把页大小提高为什么能提高 MySQL 的性能。</li>
+</ol>
+<p>页大小决定了每次 IO 操作读取的数据大小，设置的越高当然每次读取的数据就越多，可以较少 IO 操作</p>
+<p>最后 再次感谢我参考的这些文章！</p>
+<p><a href="http://cmsblogs.com/?p=5477" target="_blank" rel="noopener">http://cmsblogs.com/?p=5477</a></p>
+<p><a href="https://blog.csdn.net/tongdanping/article/details/79878302" target="_blank" rel="noopener">https://blog.csdn.net/tongdanping/article/details/79878302</a></p>
+<p><a href="https://www.cnblogs.com/JiangLe/p/6362770.html" target="_blank" rel="noopener">https://www.cnblogs.com/JiangLe/p/6362770.html</a></p>
+<p><a href="https://blog.csdn.net/du5006150054/article/details/82379210" target="_blank" rel="noopener">https://blog.csdn.net/du5006150054/article/details/82379210</a></p>
+<p>学饿了，也快下班了，今天暂时就到这里啦</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/16/聊聊线程/" rel="next" title="聊聊线程">
+                <i class="fa fa-chevron-left"></i> 聊聊线程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTE3Ni8xNTcwMw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">wyy</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WYuyin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:9005837@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引分类"><span class="nav-number">1.</span> <span class="nav-text">索引分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#约束"><span class="nav-number">2.</span> <span class="nav-text">约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AUTO-INCREMENT"><span class="nav-number">2.1.</span> <span class="nav-text">AUTO_INCREMENT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AUTO-INCREMENT锁的模式"><span class="nav-number">2.2.</span> <span class="nav-text">AUTO_INCREMENT锁的模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#innodb-autoinc-lock-mode-0-传统锁模式"><span class="nav-number">2.2.1.</span> <span class="nav-text">innodb_autoinc_lock_mode = 0 传统锁模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#innodb-autoinc-lock-mode-1-连续锁模式"><span class="nav-number">2.2.2.</span> <span class="nav-text">innodb_autoinc_lock_mode = 1 连续锁模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#innodb-autoinc-lock-mode-2-交错锁模式"><span class="nav-number">2.2.3.</span> <span class="nav-text">innodb_autoinc_lock_mode = 2 交错锁模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#丢失自增值和序列间隙"><span class="nav-number">2.3.</span> <span class="nav-text">丢失自增值和序列间隙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#「-批量插入-」-中的自增值的间隙"><span class="nav-number">2.4.</span> <span class="nav-text">「 批量插入 」 中的自增值的间隙</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚簇索引与非聚簇索引"><span class="nav-number">3.</span> <span class="nav-text">聚簇索引与非聚簇索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#聚簇索引如何加快查询速度"><span class="nav-number">3.1.</span> <span class="nav-text">聚簇索引如何加快查询速度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非聚簇索引和聚簇索引的关系"><span class="nav-number">3.2.</span> <span class="nav-text">非聚簇索引和聚簇索引的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚簇索引和非聚簇索引的区别"><span class="nav-number">3.3.</span> <span class="nav-text">聚簇索引和非聚簇索引的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的物理结构"><span class="nav-number">4.</span> <span class="nav-text">索引的物理结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-树-平衡二叉树"><span class="nav-number">4.1.</span> <span class="nav-text">B-树(平衡二叉树)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-树"><span class="nav-number">4.2.</span> <span class="nav-text">B+树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见面试题"><span class="nav-number">4.3.</span> <span class="nav-text">常见面试题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wyy</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">49.6k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+	<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("hKLsKDrV2s4IlesdGgbIKSs5-gzGzoHsz", "Qkn12z1iSOL910dkB6w4R2uw");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
