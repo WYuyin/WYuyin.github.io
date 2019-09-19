@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="关系型数据库与非关系型数据库​    先来了解一些概念，慢慢来： ​    NoSQL ​    查百度真的是云里雾里的，好在知乎的老哥们说话都很好听，人家的名字叫Not Only SQL（不仅仅是SQL），缩写叫NoSQL，取名叫非关系型数据库，其他的我们等等再说 ​    ACID ​    事务的特性，【这可是我遇到的第一道面试题啊我怎么能忘了呢？】原子性、一致性、隔离性、持久性，照理来说关">
+<meta name="description" content="参考：http://cmsblogs.com/?p=5469 上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到全文索引和组合索引">
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关系型数据库与非关系型数据库">
-<meta property="og:url" content="http://yoursite.com/2018/12/16/关系型数据库与非关系型数据库/index.html">
+<meta property="og:title" content="数据库索引[下]">
+<meta property="og:url" content="http://yoursite.com/2019/09/19/数据库索引-下/index.html">
 <meta property="og:site_name" content="一只小喵喵的博客">
-<meta property="og:description" content="关系型数据库与非关系型数据库​    先来了解一些概念，慢慢来： ​    NoSQL ​    查百度真的是云里雾里的，好在知乎的老哥们说话都很好听，人家的名字叫Not Only SQL（不仅仅是SQL），缩写叫NoSQL，取名叫非关系型数据库，其他的我们等等再说 ​    ACID ​    事务的特性，【这可是我遇到的第一道面试题啊我怎么能忘了呢？】原子性、一致性、隔离性、持久性，照理来说关">
+<meta property="og:description" content="参考：http://cmsblogs.com/?p=5469 上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到全文索引和组合索引">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-21T09:30:46.092Z">
+<meta property="og:updated_time" content="2019-09-19T02:13:19.964Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关系型数据库与非关系型数据库">
-<meta name="twitter:description" content="关系型数据库与非关系型数据库​    先来了解一些概念，慢慢来： ​    NoSQL ​    查百度真的是云里雾里的，好在知乎的老哥们说话都很好听，人家的名字叫Not Only SQL（不仅仅是SQL），缩写叫NoSQL，取名叫非关系型数据库，其他的我们等等再说 ​    ACID ​    事务的特性，【这可是我遇到的第一道面试题啊我怎么能忘了呢？】原子性、一致性、隔离性、持久性，照理来说关">
+<meta name="twitter:title" content="数据库索引[下]">
+<meta name="twitter:description" content="参考：http://cmsblogs.com/?p=5469 上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到全文索引和组合索引">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/16/关系型数据库与非关系型数据库/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/09/19/数据库索引-下/"/>
 
 
 
 
 
-  <title>关系型数据库与非关系型数据库 | 一只小喵喵的博客</title>
+  <title>数据库索引[下] | 一只小喵喵的博客</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/16/关系型数据库与非关系型数据库/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/数据库索引-下/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyy">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">关系型数据库与非关系型数据库</h1>
+          <h1 class="post-title" itemprop="name headline">数据库索引[下]</h1>
         
 
         <div class="post-meta">
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-16T10:56:53+08:00">
-                2018-12-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-19T10:05:17+08:00">
+                2019-09-19
               </time>
             
 
@@ -319,8 +319,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nosql/" itemprop="url" rel="index">
-                    <span itemprop="name">Nosql</span>
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
 
@@ -337,8 +337,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/16/关系型数据库与非关系型数据库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/16/关系型数据库与非关系型数据库/" itemprop="commentCount"></span>
+                <a href="/2019/09/19/数据库索引-下/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/19/数据库索引-下/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -346,7 +346,7 @@
 
           
           
-             <span id="/2018/12/16/关系型数据库与非关系型数据库/" class="leancloud_visitors" data-flag-title="关系型数据库与非关系型数据库">
+             <span id="/2019/09/19/数据库索引-下/" class="leancloud_visitors" data-flag-title="数据库索引[下]">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -371,7 +371,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k 字
+                  61 字
                 </span>
               
 
@@ -387,7 +387,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3 min
+                  1 min
                 </span>
               
             </div>
@@ -408,20 +408,8 @@
       
 
       
-        <h2 id="关系型数据库与非关系型数据库"><a href="#关系型数据库与非关系型数据库" class="headerlink" title="关系型数据库与非关系型数据库"></a>关系型数据库与非关系型数据库</h2><p>​    先来了解一些概念，慢慢来：</p>
-<p>​    <strong>NoSQL</strong></p>
-<p>​    查百度真的是云里雾里的，好在知乎的老哥们说话都很好听，人家的名字叫<strong>Not Only SQL</strong>（不仅仅是SQL），缩写叫NoSQL，取名叫非关系型数据库，其他的我们等等再说</p>
-<p>​    <strong>ACID</strong></p>
-<p>​    事务的特性，【这可是我遇到的第一道面试题啊我怎么能忘了呢？】原子性、一致性、隔离性、持久性，照理来说关系型数据库都支持ACID，而NoSQL是让你在CAP（一致性，可用性，分区容忍度）中的任意两项做选择</p>
-<p>​    <strong>面向对象与关系型</strong></p>
-<p>​    好吧这个标题起的并不好，但我想用日常学和用的东西来理解什么是关系型，我们的Java是个面向对象的语言，关系型数据库也就是我们平时最常用的主流数据库，他们一般有固定的表结构、表与表的关系（对象间的关系）。关系数据库与SQL离不开，可以说关系数据库就是基于SQL而产生的，使用SQL语句使我们的认知与计算机所能理解的数据库衔接在一起。</p>
-<p>​    【所以面向对象对应的就是关系型数据库…】</p>
-<p>​    关系型数据库有很多优点呀比如易理解使用方便，毕竟操作起来是通过SQL的，我们通常把一个类的数据存在一张表里，那么为什么会发展出非关系型数据库呢？首先最严重的瓶颈是高并发与高频率，这个很好理解，比如网站每秒产生的数据量非常巨大，在海量的数据库表中做增删改查效率很低，还有一点就是难以扩展，比如当你有了很多数据之后，当我想对项目进行更新维护，难免要遇到数据迁移，或一个服务器内的这个数据库占得太大了，但我又没法方便快捷的对其进行升级与扩展，</p>
-<p>​    那么NoSQL就衍生了，他以键值对存储，且结构不固定，没有固定的对象结构，你可以根据需要往同一个uid后面加上需要的与之相关的不同“字段”，那么其实一直学并用的关系型数据库的强大的SQL搜索能力是比NoSQL好得多，它不能像SQL一样通过where给很多条件进行多表查询，事实上他根本没有表的概念，但它的优点弥补了SQL几乎所有的缺点，事实上生产中我们应该避免过复杂的多表连接</p>
-<p>​    上面说到传统关系型数据库支持ACID，特别是一致性，关系型数据库为了维护一致性所付出的巨大代价就是其读写性能比较差，像微信微博等对消息高并发的应用来说一致性并没有这么重要，所以这就是“<strong>NoSQL是让你在CAP（一致性，可用性，分区容忍度）中的任意两项做选择</strong>”的意思</p>
-<p>​    现在我已经理解了什么是关系型非关系型，比如关系型数据库有Oracle，MySQL，非关系型有redis，才疏学浅，其他的还不会用。</p>
-<p>​    可能我言语间可能有强调非关系型数据库，因为看到的很多答案都是非关系型更好更快怎么样，这也许是这些回答的大佬们认为我们已经非常了解什么叫关系型吧，但其实这两个没有孰优孰劣，看到一篇文章中说这就像问轮船会不会取代汽车一样，现在NoSQL很火，那可能是因为我们需要他的时代来得相对晚一些，认为这是一个新的趋势，但完全替代还是不可能的，对不太需要后续增删改查的数据放进关系型数据库，对高并发需要扩展的数据采用非关系型数据库，对面向文档的数据存在MongoDB。</p>
-<p>​    我真是太菜了呀，码这些字花了我好久时间啊哈哈！有哪里不对的还请指正呀</p>
+        <p>参考：<a href="http://cmsblogs.com/?p=5469" target="_blank" rel="noopener">http://cmsblogs.com/?p=5469</a></p>
+<p>上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到<strong>全文索引</strong>和<strong>组合索引</strong></p>
 
       
     </div>
@@ -452,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/16/代码重构/" rel="next" title="代码重构">
-                <i class="fa fa-chevron-left"></i> 代码重构
+              <a href="/2019/09/18/数据库索引[上]/" rel="next" title="数据库索引[上]">
+                <i class="fa fa-chevron-left"></i> 数据库索引[上]
               </a>
             
           </div>
@@ -461,10 +449,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/16/Solr/" rel="prev" title="Solr">
-                Solr <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -519,17 +503,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -612,22 +587,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关系型数据库与非关系型数据库"><span class="nav-number">1.</span> <span class="nav-text">关系型数据库与非关系型数据库</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
