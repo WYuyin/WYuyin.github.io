@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="参考：http://cmsblogs.com/?p=5469 上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到全文索引和组合索引">
+<meta name="description" content="参考：http://cmsblogs.com/?p=5469 https://blog.csdn.net/mrzhouxiaofei/article/details/79940958 上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到全文索引和组合索引 全文索引 通过数值比较、范围过滤等就可以完成绝大多数我们需要的查询，但是，如果希望通过关键字的匹配来">
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库索引[下]">
 <meta property="og:url" content="http://yoursite.com/2019/09/19/数据库索引-下/index.html">
 <meta property="og:site_name" content="一只小喵喵的博客">
-<meta property="og:description" content="参考：http://cmsblogs.com/?p=5469 上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到全文索引和组合索引">
+<meta property="og:description" content="参考：http://cmsblogs.com/?p=5469 https://blog.csdn.net/mrzhouxiaofei/article/details/79940958 上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到全文索引和组合索引 全文索引 通过数值比较、范围过滤等就可以完成绝大多数我们需要的查询，但是，如果希望通过关键字的匹配来">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-19T02:13:19.964Z">
+<meta property="og:updated_time" content="2019-09-20T06:51:20.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库索引[下]">
-<meta name="twitter:description" content="参考：http://cmsblogs.com/?p=5469 上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到全文索引和组合索引">
+<meta name="twitter:description" content="参考：http://cmsblogs.com/?p=5469 https://blog.csdn.net/mrzhouxiaofei/article/details/79940958 上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到全文索引和组合索引 全文索引 通过数值比较、范围过滤等就可以完成绝大多数我们需要的查询，但是，如果希望通过关键字的匹配来">
 
 
 
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  61 字
+                  974 字
                 </span>
               
 
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 min
+                  3 min
                 </span>
               
             </div>
@@ -398,7 +398,39 @@
 
       
         <p>参考：<a href="http://cmsblogs.com/?p=5469" target="_blank" rel="noopener">http://cmsblogs.com/?p=5469</a></p>
+<p><a href="https://blog.csdn.net/mrzhouxiaofei/article/details/79940958" target="_blank" rel="noopener">https://blog.csdn.net/mrzhouxiaofei/article/details/79940958</a></p>
 <p>上一篇主要介绍了自增约束、聚簇索引也就是主索引、以及索引的物理结构，一开始说索引分类的时候有提到<strong>全文索引</strong>和<strong>组合索引</strong></p>
+<p>全文索引</p>
+<p>通过数值比较、范围过滤等就可以完成绝大多数我们需要的查询，但是，如果希望通过关键字的匹配来进行查询过滤，那么就需要基于相似度的查询，而不是原来的精确数值比较。全文索引就是为这种场景设计的。</p>
+<p>你可能会说，用 like + % 就可以实现模糊匹配了，为什么还要全文索引？like + % 在文本比较少时是合适的，但是对于大量的文本数据检索，是不可想象的。全文索引在大量的数据面前，能比 like + % 快 N 倍，速度不是一个数量级，但是全文索引可能存在精度问题。</p>
+<p>你可能没有注意过全文索引，不过至少应该对一种全文索引技术比较熟悉：各种的搜索引擎。虽然搜索引擎的索引对象是超大量的数据，并且通常其背后都不是关系型数据库，不过全文索引的基本原理是一样的。</p>
+<h2 id="版本支持"><a href="#版本支持" class="headerlink" title="版本支持"></a>版本支持</h2><p>开始之前，先说一下全文索引的版本、存储引擎、数据类型的支持情况</p>
+<p>MySQL 5.6 以前的版本，只有 MyISAM 存储引擎支持全文索引；<br>MySQL 5.6 及以后的版本，MyISAM 和 InnoDB 存储引擎均支持全文索引;<br>只有字段的数据类型为 char、varchar、text 及其系列才可以建全文索引。<br>测试或使用全文索引时，要先看一下自己的 MySQL 版本、存储引擎和数据类型是否支持全文索引。</p>
+<h2 id="创建删除全文索引"><a href="#创建删除全文索引" class="headerlink" title="创建删除全文索引"></a>创建删除全文索引</h2><p>全文索引的关键字为fulltext</p>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建表时创建全文索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> article ( </span><br><span class="line">                  <span class="keyword">id</span> <span class="built_in">INT</span> AUTO_INCREMENT <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span>, </span><br><span class="line">                  title <span class="built_in">VARCHAR</span>(<span class="number">200</span>), </span><br><span class="line">                  <span class="keyword">body</span> <span class="built_in">TEXT</span>, </span><br><span class="line">                  FULLTEXT(title, <span class="keyword">body</span>) </span><br><span class="line">              ) <span class="keyword">TYPE</span>=MYISAM;</span><br></pre></td></tr></table></figure>
+<p>在已存在的表上创建全文索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> FULLTEXT <span class="keyword">INDEX</span> ft_email_name <span class="keyword">ON</span> <span class="string">`student`</span> (<span class="string">`name`</span>)</span><br><span class="line">#也可以在创建索引的时候指定索引的长度：</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> FULLTEXT <span class="keyword">INDEX</span> ft_email_name <span class="keyword">ON</span> <span class="string">`student`</span> (<span class="string">`name`</span>(<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+<p>通过 SQL 语句 ALTER TABLE 创建全文索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`student`</span> <span class="keyword">ADD</span> FULLTEXT <span class="keyword">INDEX</span> ft_stu_name  (<span class="string">`name`</span>) </span><br><span class="line">#ft_stu_name是索引名，可以随便起</span><br><span class="line"></span><br><span class="line">#或者：<span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`student`</span> <span class="keyword">ADD</span> FULLTEXT ft_stu_name  (<span class="string">`name`</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>修改个 O，直接删掉重建。</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>直接使用 DROP INDEX 删除全文索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">index</span> content_tag_fulltext</span><br><span class="line">    <span class="keyword">on</span> fulltext_test;</span><br></pre></td></tr></table></figure>
+<p>通过 SQL 语句 ALTER TABLE 删除全文索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> fulltext_test</span><br><span class="line">    <span class="keyword">drop</span> <span class="keyword">index</span> content_tag_fulltext;</span><br></pre></td></tr></table></figure>
+<h2 id="使用全文索引"><a href="#使用全文索引" class="headerlink" title="使用全文索引"></a>使用全文索引</h2><p>如何创建比较简单，这里就不说了，来看一下怎么使用</p>
+<p>全文索引的使用方式一般为使用 <code>MATCH()... AGAINST</code></p>
+<p>使用的时候感觉索引名根本没什么用，因为语法是这样的：</p>
+<p><code>select * from tb_name where match(col_name)against(&#39;a&#39;)</code></p>
+<p>另外插一句，使用全文索引时，测试表里至少要有 4 条以上的记录，否则，会出现意想不到的结果。</p>
+<h2 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h2><ul>
+<li><p>MySql自带的全文索引只能对英文进行全文检索，目前无法对中文进行全文检索。如果需要对包含中文在内的文本数据进行全文检索，我们需要采用Sphinx（斯芬克斯）/Coreseek技术来处理中文。</p>
+</li>
+<li><p>数据表越大，全文索引效果好，比较小的数据表会返回一些难以理解的结果。</p>
+</li>
+<li>只有由字母，数字，单引号，下划线构成的字符串被认为是单词，带注音符号的字母仍是字母，像C++不再认为是单词，且不区分大小写</li>
+<li>全文索引创建速度慢，而且对有全文索引的各种数据修改操作也慢</li>
+</ul>
 
       
     </div>
@@ -492,8 +524,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -577,6 +618,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本支持"><span class="nav-number">1.</span> <span class="nav-text">版本支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建删除全文索引"><span class="nav-number">2.</span> <span class="nav-text">创建删除全文索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建"><span class="nav-number">2.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改"><span class="nav-number">2.2.</span> <span class="nav-text">修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">2.3.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用全文索引"><span class="nav-number">3.</span> <span class="nav-text">使用全文索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺陷"><span class="nav-number">4.</span> <span class="nav-text">缺陷</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -604,7 +661,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.6k</span>
+    <span title="Site words total count">50.5k</span>
   
 </div>
 
