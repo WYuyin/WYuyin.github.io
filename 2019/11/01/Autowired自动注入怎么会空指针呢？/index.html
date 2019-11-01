@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="MQ," />
+  <meta name="keywords" content="java,spring boot," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Mq今天小菜鸡跟着Java进阶扫盲好好了解了一下Mq，感觉人家分享的东西写的真的是好呀，我自己写的都是些啥呀，本来不想自己写了，但是害怕自己读了一遍会忘记，并且觉得自己写一遍理解得更好，所以还是想要重新来学习写一篇有关Mq的文章。 事实上我已经遇到了Activemq与Kafka，没有好好地思考其原理与优缺点，那么废话不多说开始吧。 为什么要用消息队列之前了解Activemq的时候粗略地了解了一下，">
-<meta name="keywords" content="MQ">
+<meta name="description" content="被@Component标识的类居然无法通过@Autowired注入，报的空指针！其实这个问题之前也有遇到过，在spring中也可以通过ApplicationContext的getBean方法获取指定bean，但还是想不通为什么会注入不进来，先说一下代码，大致这样： 1234567891011121314151617181920212223242526@Componentpublic class X">
+<meta name="keywords" content="java,spring boot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MQ入门">
-<meta property="og:url" content="http://yoursite.com/2019/01/21/MQ入门/index.html">
+<meta property="og:title" content="@Autowired自动注入怎么会空指针呢？">
+<meta property="og:url" content="http://yoursite.com/2019/11/01/Autowired自动注入怎么会空指针呢？/index.html">
 <meta property="og:site_name" content="一只小喵喵的博客">
-<meta property="og:description" content="Mq今天小菜鸡跟着Java进阶扫盲好好了解了一下Mq，感觉人家分享的东西写的真的是好呀，我自己写的都是些啥呀，本来不想自己写了，但是害怕自己读了一遍会忘记，并且觉得自己写一遍理解得更好，所以还是想要重新来学习写一篇有关Mq的文章。 事实上我已经遇到了Activemq与Kafka，没有好好地思考其原理与优缺点，那么废话不多说开始吧。 为什么要用消息队列之前了解Activemq的时候粗略地了解了一下，">
+<meta property="og:description" content="被@Component标识的类居然无法通过@Autowired注入，报的空指针！其实这个问题之前也有遇到过，在spring中也可以通过ApplicationContext的getBean方法获取指定bean，但还是想不通为什么会注入不进来，先说一下代码，大致这样： 1234567891011121314151617181920212223242526@Componentpublic class X">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-21T12:00:56.771Z">
+<meta property="og:updated_time" content="2019-11-01T06:41:57.430Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MQ入门">
-<meta name="twitter:description" content="Mq今天小菜鸡跟着Java进阶扫盲好好了解了一下Mq，感觉人家分享的东西写的真的是好呀，我自己写的都是些啥呀，本来不想自己写了，但是害怕自己读了一遍会忘记，并且觉得自己写一遍理解得更好，所以还是想要重新来学习写一篇有关Mq的文章。 事实上我已经遇到了Activemq与Kafka，没有好好地思考其原理与优缺点，那么废话不多说开始吧。 为什么要用消息队列之前了解Activemq的时候粗略地了解了一下，">
+<meta name="twitter:title" content="@Autowired自动注入怎么会空指针呢？">
+<meta name="twitter:description" content="被@Component标识的类居然无法通过@Autowired注入，报的空指针！其实这个问题之前也有遇到过，在spring中也可以通过ApplicationContext的getBean方法获取指定bean，但还是想不通为什么会注入不进来，先说一下代码，大致这样： 1234567891011121314151617181920212223242526@Componentpublic class X">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/21/MQ入门/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/01/Autowired自动注入怎么会空指针呢？/"/>
 
 
 
 
 
-  <title>MQ入门 | 一只小喵喵的博客</title>
+  <title>@Autowired自动注入怎么会空指针呢？ | 一只小喵喵的博客</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/21/MQ入门/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/Autowired自动注入怎么会空指针呢？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wyy">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MQ入门</h1>
+          <h1 class="post-title" itemprop="name headline">@Autowired自动注入怎么会空指针呢？</h1>
         
 
         <div class="post-meta">
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-21T19:58:03+08:00">
-                2019-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-01T11:06:55+08:00">
+                2019-11-01
               </time>
             
 
@@ -319,8 +319,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/中间件/" itemprop="url" rel="index">
-                    <span itemprop="name">中间件</span>
+                  <a href="/categories/基础/" itemprop="url" rel="index">
+                    <span itemprop="name">基础</span>
                   </a>
                 </span>
 
@@ -337,8 +337,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/21/MQ入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/21/MQ入门/" itemprop="commentCount"></span>
+                <a href="/2019/11/01/Autowired自动注入怎么会空指针呢？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/11/01/Autowired自动注入怎么会空指针呢？/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k 字
+                  700 字
                 </span>
               
 
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3 min
+                  2 min
                 </span>
               
             </div>
@@ -397,70 +397,14 @@
       
 
       
-        <h2 id="Mq"><a href="#Mq" class="headerlink" title="Mq"></a>Mq</h2><p>今天小菜鸡跟着<a href="https://doocs.github.io/advanced-java/#/?id=%e4%ba%92%e8%81%94%e7%bd%91-java-%e5%b7%a5%e7%a8%8b%e5%b8%88%e8%bf%9b%e9%98%b6%e7%9f%a5%e8%af%86%e5%ae%8c%e5%85%a8%e6%89%ab%e7%9b%b2" target="_blank" rel="noopener">Java进阶扫盲</a>好好了解了一下Mq，感觉人家分享的东西写的真的是好呀，我自己写的都是些啥呀，本来不想自己写了，但是害怕自己读了一遍会忘记，并且觉得自己写一遍理解得更好，所以还是想要重新来学习写一篇有关Mq的文章。</p>
-<p>事实上我已经遇到了Activemq与Kafka，没有好好地思考其原理与优缺点，那么废话不多说开始吧。</p>
-<h3 id="为什么要用消息队列"><a href="#为什么要用消息队列" class="headerlink" title="为什么要用消息队列"></a>为什么要用消息队列</h3><p>之前了解Activemq的时候粗略地了解了一下，当时只是觉得可能是因为处理速度比较快，另外还有一个词——解耦，ok，<strong>解耦</strong>是如何体现的呢？</p>
-<p>倘若现在有一个消息生产者producer，有多个要获取这些消息的消费者，若使用调用接口的方式，producer发消息的同时万一遇到消费者挂了的情况呢？挂了要不要重发？这时候producer和其他需要消费的系统之间有高的耦合，这显然非常地麻烦。</p>
-<p>于是 发布订阅的模式就解决了这一问题，producer只需要丢给Mq消息，消费者自行从Mq里订阅所需要的消息，同时这也解释了为什么用Mq肯定速度比较快，除了producer不需要考虑其他系统外，Mq可以<strong>异步</strong>地被多个消费者订阅。</p>
-<p><strong>削峰</strong></p>
-<p>生产中的消息不可能总是平缓地产生，有个什么活动或周末客户量较大很可能导致系统请求暴增，若依靠普通的基于MySQL不知道要多久，而先刷进Mq，一边等待数据库处理，等系统空闲比如深夜了没什么用户的时候，再慢慢处理Mq中的消息。</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>并不是把一个大盒子的东西拆开来放进小盒子就完全没有弊端，万一Mq挂了消息丢了，或是消费者拿到消息后写数据库失败了呢，而且平白多了一个小盒子出来无疑是把整个过程复杂化了，对付这种一致性和可用性问题部分Mq有自己独到的优化方式。</p>
-<h3 id="Kafka、ActiveMQ、RabbitMQ、RocketMQ-有什么优缺点？"><a href="#Kafka、ActiveMQ、RabbitMQ、RocketMQ-有什么优缺点？" class="headerlink" title="Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点？"></a>Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点？</h3><table>
-<thead>
-<tr>
-<th>特性</th>
-<th>ActiveMQ</th>
-<th>RabbitMQ</th>
-<th>RocketMQ</th>
-<th>Kafka</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>单机吞吐量</td>
-<td>万级，比 RocketMQ、Kafka 低一个数量级</td>
-<td>同 ActiveMQ</td>
-<td>10 万级，支撑高吞吐</td>
-<td>10 万级，高吞吐，一般配合大数据类的系统来进行实时数据计算、日志采集等场景</td>
-</tr>
-<tr>
-<td>topic 数量对吞吐量的影响</td>
-<td></td>
-<td></td>
-<td>topic 可以达到几百/几千的级别，吞吐量会有较小幅度的下降，这是 RocketMQ 的一大优势，在同等机器下，可以支撑大量的 topic</td>
-<td>topic 从几十到几百个时候，吞吐量会大幅度下降，在同等机器下，Kafka 尽量保证 topic 数量不要过多，如果要支撑大规模的 topic，需要增加更多的机器资源</td>
-</tr>
-<tr>
-<td>时效性</td>
-<td>ms 级</td>
-<td>微秒级，这是 RabbitMQ 的一大特点，延迟最低</td>
-<td>ms 级</td>
-<td>延迟在 ms 级以内</td>
-</tr>
-<tr>
-<td>可用性</td>
-<td>高，基于主从架构实现高可用</td>
-<td>同 ActiveMQ</td>
-<td>非常高，分布式架构</td>
-<td>非常高，分布式，一个数据多个副本，少数机器宕机，不会丢失数据，不会导致不可用</td>
-</tr>
-<tr>
-<td>消息可靠性</td>
-<td>有较低的概率丢失数据</td>
-<td>基本不丢</td>
-<td>经过参数优化配置，可以做到 0 丢失</td>
-<td>同 RocketMQ</td>
-</tr>
-<tr>
-<td>功能支持</td>
-<td>MQ 领域的功能极其完备</td>
-<td>基于 erlang 开发，并发能力很强，性能极好，延时很低</td>
-<td>MQ 功能较为完善，还是分布式的，扩展性好</td>
-<td>功能较为简单，主要支持简单的 MQ 功能，在大数据领域的实时计算以及日志采集被大规模使用</td>
-</tr>
-</tbody>
-</table>
-<p>入门最早用Activemq，实际生产中RabbitMq和Kafka都是优选。</p>
+        <p>被@Component标识的类居然无法通过@Autowired注入，报的空指针！其实这个问题之前也有遇到过，在spring中也可以通过ApplicationContext的getBean方法获取指定bean，但还是想不通为什么会注入不进来，先说一下代码，大致这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XXXUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(XXXUtil.class);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> XXXDao xxxDao;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;DataProxy&gt; proxyPool;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, XXXClient&gt; pool;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">XXXUtil</span><span class="params">(XXXDao xxxDao)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.xxxDao = xxxDao;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostConstruct</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> XXClient <span class="title">createClient</span><span class="params">(JobParam jobParam)</span> </span>&#123;</span><br><span class="line">        XXClient xxClient;</span><br><span class="line">        <span class="comment">//xxClient = ...</span></span><br><span class="line">        <span class="keyword">return</span> webClient;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写了一个工具类，准备用在某Job中，但是是个子任务，顺序是在执行A任务中引用了B任务，而在B任务中利用@Autowired将XXXUtil注入使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JobHandler</span>(value = <span class="string">"AJob"</span>)</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AJob</span> <span class="keyword">extends</span> <span class="title">AbstractJobHandlerWithBean</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">execute0</span><span class="params">(JobParam jobParam)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        BJob bJob = <span class="keyword">new</span> BJob();</span><br><span class="line">        bJob.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@JobHandler</span>(value = <span class="string">"bJob"</span>)</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BJob</span> <span class="keyword">extends</span> <span class="title">AbstractJobHandlerWithBean</span>&lt;<span class="title">ReportTaskParam</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> XXXUtil xxxUtil;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getReport</span><span class="params">(JobParam jobParam)</span> </span>&#123;</span><br><span class="line">        XXClient xxClient =xxxUtil.createClient(jobParam);<span class="comment">//这一行报空指针</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时BJob中就获取不到XXXUtil，空指针异常，其实不用打断点也知道，肯定是xxxUtil为null了，但因为BJob是个会被其他地方调用的类，如果写成了<code>private final XXXUtil xxxUtil;</code>，并放在构造函数里，对AJob来说无疑是多此一举，很没有必要。要解决这个问题必须得搞清楚为什么@Autowired在这注入不管用了，看到了这个博客才找到了问题所在，<a href="https://www.cnblogs.com/chyu/p/4655475.html" target="_blank" rel="noopener">https://www.cnblogs.com/chyu/p/4655475.html</a>，这里不得不吐槽bai度，还不如叫一度呢，查出来的解决不了问题不说还全是重复的，自从梯子坏了都没法谷歌，只能用bing勉强支撑。</p>
+<p>文中写的很清楚，因为用构造函数直接new的BJob对象，是导致其中@Autowired失败的原因，回想一下一般性Service和Dao都是用@Autowired注入的，难怪这我直接用构造函数实例化一个bean会出问题，它也就是一个普普通通的Component啊，当然也应当有Component应有的亚子</p>
+<p>至于为什么，这就要延申到Bean的生命周期了，所有的Spring的@Autowired注解都在构造函数之后，而成员变量毋庸置疑是最先进行的，所以三者的初始化顺序是，<strong>成员变量&gt;构造函数&gt;@Autowired</strong>，结合在这个问题上就是，① private final XXXUtil &gt; ② new BJob() &gt; ③ @Autowired  private XXXUtil，弄懂了这个之后就豁然开朗了，由于构造函数的初始化方式是在@Autowired之前的，当我在调用BJob中的方法并试图取XXXUtil对象时，这个被@Autowired注入的可怜的对象还没有准备好</p>
+<p><strong>结论：</strong>@Component可以利用final变成成员变量或一律使用@Autowired的方式来引用</p>
 
       
     </div>
@@ -478,7 +422,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MQ/" rel="tag"><i class="fa fa-tag"></i> MQ</a>
+            <a href="/tags/java-spring-boot/" rel="tag"><i class="fa fa-tag"></i> java,spring boot</a>
           
         </div>
       
@@ -491,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/16/HashMap的key是否可以为null/" rel="next" title="HashMap的key是否可以为null">
-                <i class="fa fa-chevron-left"></i> HashMap的key是否可以为null
+              <a href="/2019/09/19/数据库索引-下/" rel="next" title="数据库索引[下]">
+                <i class="fa fa-chevron-left"></i> 数据库索引[下]
               </a>
             
           </div>
@@ -500,10 +444,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/21/kafka浅谈/" rel="prev" title="kafka浅谈">
-                kafka浅谈 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -558,17 +498,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -651,22 +582,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mq"><span class="nav-number">1.</span> <span class="nav-text">Mq</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要用消息队列"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要用消息队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka、ActiveMQ、RabbitMQ、RocketMQ-有什么优缺点？"><span class="nav-number">1.3.</span> <span class="nav-text">Kafka、ActiveMQ、RabbitMQ、RocketMQ 有什么优缺点？</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
